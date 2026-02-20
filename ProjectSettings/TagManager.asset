@@ -5,15 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gota
+  - Droplet
+  - Conteudo
+  - Interactable
+  - 'DropperTip '
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - 'Pickup '
   - Water
   - UI
-  - 
-  - 
+  - Interactable
+  - SampleZone
   - 
   - 
   - 
