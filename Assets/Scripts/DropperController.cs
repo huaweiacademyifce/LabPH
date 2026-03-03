@@ -6,18 +6,21 @@ public class DropperController : MonoBehaviour
     public ChemicalSampleData currentSample;
 
     [Header("Visual")]
-    public Renderer liquidRenderer;   // Renderer do CContaGotas
+    public LiquidController liquidController;
     public Transform dropSpawnPoint;
     public GameObject dropPrefab;
 
+
     public void AbsorbSample(ChemicalSampleData sample)
     {
+        if (sample == null) return;
+
         currentSample = sample;
         hasSample = true;
 
-        if (liquidRenderer != null)
+        if (liquidController != null)
         {
-            liquidRenderer.material.color = sample.baseColor;
+            liquidController.AbsorbIndicator(sample.baseColor);
         }
 
         Debug.Log("🧪 Conta-gotas absorveu: " + sample.sampleName);
@@ -39,9 +42,8 @@ public class DropperController : MonoBehaviour
 
         hasSample = false;
 
-        // esvazia visualmente
-        if (liquidRenderer != null)
-            liquidRenderer.material.color = Color.clear;
+        if (liquidController != null)
+            liquidController.Clear();
 
         Debug.Log("💧 Gota liberada");
     }

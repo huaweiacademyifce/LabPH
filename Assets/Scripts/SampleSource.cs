@@ -6,14 +6,15 @@ public class SampleSource : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("DropperTip")) return;
+        // Só dispara se for a ponta do conta-gotas
+        if (other.GetComponent<DropperTipMarker>() == null) return;
 
-        DropperController dropper =
-            other.GetComponentInParent<DropperController>();
-
+        DropperController dropper = other.GetComponentInParent<DropperController>();
         if (dropper == null) return;
-        if (dropper.hasSample) return;
+
+        if (dropper.hasSample) return; // já está cheio
 
         dropper.AbsorbSample(sampleData);
+        Debug.Log("🧪 Chamando AbsorbSample...");
     }
 }

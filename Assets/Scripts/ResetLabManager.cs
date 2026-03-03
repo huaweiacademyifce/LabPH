@@ -64,35 +64,35 @@ public class ResetLabManager : MonoBehaviour
     }
 
     void ResetDropper()
+{
+    // força soltar o conta-gotas se estiver na mão
+    if (dropperGrab != null && interactionManager != null)
     {
-        // força soltar o conta-gotas se estiver na mão
-        if (dropperGrab != null && interactionManager != null)
+        interactionManager.CancelInteractableSelection(dropperGrab as IXRSelectInteractable);
+    }
+
+    Rigidbody rb = dropper.GetComponent<Rigidbody>();
+    if (rb != null)
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    dropper.SetPositionAndRotation(dropperStartPos, dropperStartRot);
+
+    // 🔹 reset lógico
+    if (dropperController != null)
+    {
+        dropperController.hasSample = false;
+        dropperController.currentSample = null;
+
+        // 🔹 reset visual (CORRETO)
+        if (dropperController.liquidController != null)
         {
-            interactionManager.CancelInteractableSelection(dropperGrab as IXRSelectInteractable);
-        }
-
-        Rigidbody rb = dropper.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
-
-        dropper.SetPositionAndRotation(dropperStartPos, dropperStartRot);
-
-        // 🔹 reset lógico
-        if (dropperController != null)
-        {
-            dropperController.hasSample = false;
-            dropperController.currentSample = null;
-
-            // 🔹 reset visual (AQUI ESTÁ A CORREÇÃO)
-            if (dropperController.liquidRenderer != null)
-            {
-                dropperController.liquidRenderer.material.color = Color.clear;
-            }
+            dropperController.liquidController.Clear();
         }
     }
+}
 
     void ResetSetas()
     {

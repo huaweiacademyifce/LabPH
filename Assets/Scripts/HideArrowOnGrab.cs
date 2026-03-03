@@ -1,51 +1,47 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using Oculus.Interaction;
 
 public class HideArrowOnGrab : MonoBehaviour
 {
     public GameObject hologramArrow;
 
-    private XRGrabInteractable grab;
+    private GrabInteractable grabInteractable;
+    private bool alreadyHidden = false;
 
     void Awake()
     {
-        grab = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<GrabInteractable>();
     }
 
     void OnEnable()
     {
-        if (grab != null)
-            grab.selectEntered.AddListener(OnGrab);
+        if (grabInteractable != null)
+        {
+            grabInteractable.WhenStateChanged += HandleStateChanged;
+        }
     }
 
     void OnDisable()
     {
-        if (grab != null)
-            grab.selectEntered.RemoveListener(OnGrab);
-    }
-
-    private void OnGrab(SelectEnterEventArgs args)
-    {
-        HideArrow();
-    }
-
-    // 🔹 ESCONDE a seta (quando pega)
-    public void HideArrow()
-    {
-        if (hologramArrow != null)
+        if (grabInteractable != null)
         {
-            hologramArrow.SetActive(false);
-            Debug.Log("Seta holográfica desativada em: " + gameObject.name);
+            grabInteractable.WhenStateChanged -= HandleStateChanged;
         }
     }
 
-    // 🔹 MOSTRA a seta (usado no RESET)
-    public void ShowArrow()
+    private void HandleStateChanged(InteractableStateChangeArgs args)
     {
-        if (hologramArrow != null)
+        if (alreadyHidden) return;
+
+        if (args.NewState == InteractableState.Select)
         {
-            hologramArrow.SetActive(true);
-            Debug.Log("Seta holográfica reativada em: " + gameObject.name);
+            alreadyHidden = true;
+
+            if (hologramArrow != null)
+            {
+                hologramArrow.SetActive(false);
+                Debug.Log("Seta holográfica desativada (Meta SDK).");
+            }
         }
     }
 }

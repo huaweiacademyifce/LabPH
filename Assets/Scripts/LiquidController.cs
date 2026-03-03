@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class LiquidController : MonoBehaviour
 {
-    private static readonly int ReactionColorProp =
-        Shader.PropertyToID("_ReactionColor");
-    private static readonly int LerpFactorProp =
-        Shader.PropertyToID("_LerpFactor");
+    // Custom shader props (se existirem)
+    private static readonly int ReactionColorProp = Shader.PropertyToID("_ReactionColor");
+    private static readonly int LerpFactorProp = Shader.PropertyToID("_LerpFactor");
+
+    // Standard / URP fallback props
+    private static readonly int ColorProp = Shader.PropertyToID("_Color");       // Standard
+    private static readonly int BaseColorProp = Shader.PropertyToID("_BaseColor"); // URP Lit
 
     private MaterialPropertyBlock mpb;
     private Renderer rend;
@@ -17,71 +20,92 @@ public class LiquidController : MonoBehaviour
         mpb = new MaterialPropertyBlock();
     }
 
-    // 🔹 USADO NOS FRASCOS (REAÇÃO QUÍMICA)
     public void ApplyReaction(Color finalColor, float duration = 1f)
     {
         StopAllCoroutines();
-        StartCoroutine(AnimateLerp(finalColor, duration));
+        StartCoroutine(AnimateToColor(finalColor, duration));
     }
 
-    private IEnumerator AnimateLerp(Color finalColor, float duration)
-    {
-        float t = 0f;
-
-        rend.GetPropertyBlock(mpb);
-        mpb.SetColor(ReactionColorProp, finalColor);
-        mpb.SetFloat(LerpFactorProp, 0f);
-        rend.SetPropertyBlock(mpb);
-
-        while (t < duration)
-        {
-            t += Time.deltaTime;
-            float v = Mathf.Clamp01(t / duration);
-
-            mpb.SetFloat(LerpFactorProp, v);
-            rend.SetPropertyBlock(mpb);
-            yield return null;
-        }
-
-        mpb.SetFloat(LerpFactorProp, 1f);
-        rend.SetPropertyBlock(mpb);
-    }
-
-    // 🔹 USADO NO CONTA-GOTAS (ABSORÇÃO DO INDICADOR)
-    public void AbsorbIndicator(Color indicatorColor, float duration = 0.4f)
+    public void AbsorbIndicator(Color indicatorColor, float duration = 0.25f)
     {
         StopAllCoroutines();
-        StartCoroutine(AbsorbRoutine(indicatorColor, duration));
+        StartCoroutine(AnimateToColor(indicatorColor, duration));
     }
 
-    private IEnumerator AbsorbRoutine(Color color, float duration)
+    private IEnumerator AnimateToColor(Color targetColor, float duration)
     {
+        if (rend == null) yield break;
+
+        // Garante alpha visível (exceto se você QUISER transparente)
+        if (targetColor.a <= 0.001f)
+            targetColor.a = 1f;
+
         float t = 0f;
 
-        rend.GetPropertyBlock(mpb);
-        mpb.SetColor(ReactionColorProp, color);
-        mpb.SetFloat(LerpFactorProp, 0f);
-        rend.SetPropertyBlock(mpb);
+        // Pega cor atual (fallback)
+        Color startColor = GetCurrentColor();
 
         while (t < duration)
         {
             t += Time.deltaTime;
             float v = Mathf.Clamp01(t / duration);
-
-            mpb.SetFloat(LerpFactorProp, v);
-            rend.SetPropertyBlock(mpb);
+            Color c = Color.Lerp(startColor, targetColor, v);
+            SetColor(c);
             yield return null;
         }
 
-        mpb.SetFloat(LerpFactorProp, 1f);
-        rend.SetPropertyBlock(mpb);
+        SetColor(targetColor);
     }
 
-    // 🔹 LIMPA O CONTA-GOTAS (VOLTA A TRANSPARENTE)
     public void Clear()
     {
-        rend.GetPropertyBlock(mpb);
-        mpb.SetFloat(LerpFactorProp, 0f);
-        rend.SetPropertyBlock(mpb);
+        // “limpar” = transparente
+        SetColor(new Color(1f, 1f, 1f, 0f));
+    }
+
+    private Color GetCurrentColor()
+    {
+        var mat = rend.sharedMaterial;
+        if (mat == null) return Color.white;
+
+        if (mat.HasProperty(ColorProp)) return mat.GetColor(ColorProp);
+        if (mat.HasProperty(BaseColorProp)) return mat.GetColor(BaseColorProp);
+
+        // se estiver usando shader custom, não dá pra ler fácil via MPB
+        return Color.white;
+    }
+
+    private void SetColor(Color c)
+    {
+        var mat = rend.sharedMaterial;
+        if (mat == null) return;
+
+        // 1) Se o shader custom existir, usa ele
+        if (mat.HasProperty(ReactionColorProp) && mat.HasProperty(LerpFactorProp))
+        {
+            rend.GetPropertyBlock(mpb);
+            mpb.SetColor(ReactionColorProp, c);
+            mpb.SetFloat(LerpFactorProp, 1f);
+            rend.SetPropertyBlock(mpb);
+            return;
+        }
+
+        // 2) Fallback Standard
+        if (mat.HasProperty(ColorProp))
+        {
+            rend.GetPropertyBlock(mpb);
+            mpb.SetColor(ColorProp, c);
+            rend.SetPropertyBlock(mpb);
+            return;
+        }
+
+        // 3) Fallback URP Lit
+        if (mat.HasProperty(BaseColorProp))
+        {
+            rend.GetPropertyBlock(mpb);
+            mpb.SetColor(BaseColorProp, c);
+            rend.SetPropertyBlock(mpb);
+            return;
+        }
     }
 }

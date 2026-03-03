@@ -8,28 +8,26 @@ public class UIStartButton : MonoBehaviour
     [Header("Ponto para onde o jogador será teleportado")]
     public Transform teleportPoint;
 
-    [Header("Objeto que será movido para o local do experimento (ex: Player, FPC, XR Origin)")]
-    public GameObject playerRig;
+    [Header("Root do Camera Rig (BuildingBlock Camera Rig)")]
+    public Transform cameraRigRoot;
 
     public void StartExperience()
     {
-        Debug.Log("BOTAO CLICADO! (StartExperience foi chamado)");
+        Debug.Log("BOTAO CLICADO!");
 
-        // 1. Desativa painel de introdução
+        if (cameraRigRoot == null || teleportPoint == null)
+        {
+            Debug.LogError("CameraRigRoot ou TeleportPoint não configurado!");
+            return;
+        }
+
+        // Teleporta o rig inteiro
+        cameraRigRoot.position = teleportPoint.position;
+        cameraRigRoot.rotation = teleportPoint.rotation;
+
         if (painelInicial != null)
             painelInicial.SetActive(false);
 
-        // 2. Teleporta o player (somente se estiver configurado)
-        if (playerRig != null && teleportPoint != null)
-        {
-            playerRig.transform.position = teleportPoint.position;
-            playerRig.transform.rotation = teleportPoint.rotation;
-
-            Debug.Log("Player teleportado para o ponto da mesa.");
-        }
-        else
-        {
-            Debug.LogWarning("PlayerRig ou TeleportPoint não configurados no UIStartButton.");
-        }
+        Debug.Log("Teleporte aplicado com sucesso!");
     }
 }
