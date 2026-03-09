@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Sal
   m_EditorClassIdentifier: 
   sampleName: Sal
+  sampleType: 3
+  isIndicator: 0
+  indicatorType: 0
   ph: 7
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
   reactionColor: {r: 0.47843137, g: 0.36078432, b: 1, a: 0}

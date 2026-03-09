@@ -46,6 +46,11 @@ public class DropZoneDetector_Reagent : MonoBehaviour
         if (progressPanel != null)
             progressPanel.MarkCompleted(targetReagentData);
 
+            Debug.Log("Tabela tentando marcar: " +
+          dropper.currentSample.indicatorType +
+          " + " +
+          targetReagentData.sampleType);
+
         // ✅ Marca tabela (indicador X reagente)
         if (progressTabela != null && dropper.currentSample.isIndicator)
         {

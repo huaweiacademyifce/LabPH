@@ -3,45 +3,46 @@ using Oculus.Interaction;
 
 public class HideArrowOnGrab : MonoBehaviour
 {
+    [Header("Seta holográfica")]
     public GameObject hologramArrow;
 
-    private GrabInteractable grabInteractable;
-    private bool alreadyHidden = false;
+    private Grabbable grabbable;
+    private bool arrowHidden = false;
 
-    void Awake()
+    void Start()
     {
-        grabInteractable = GetComponent<GrabInteractable>();
+        grabbable = GetComponent<Grabbable>();
     }
 
-    void OnEnable()
+    void Update()
     {
-        if (grabInteractable != null)
+        if (grabbable == null) return;
+
+        // se alguém estiver segurando o objeto
+        if (!arrowHidden && grabbable.SelectingPointsCount > 0)
         {
-            grabInteractable.WhenStateChanged += HandleStateChanged;
+            HideArrow();
         }
     }
 
-    void OnDisable()
+    public void HideArrow()
     {
-        if (grabInteractable != null)
+        if (hologramArrow != null)
         {
-            grabInteractable.WhenStateChanged -= HandleStateChanged;
+            hologramArrow.SetActive(false);
         }
+
+        arrowHidden = true;
     }
 
-    private void HandleStateChanged(InteractableStateChangeArgs args)
+    public void ShowArrow()
     {
-        if (alreadyHidden) return;
-
-        if (args.NewState == InteractableState.Select)
+        if (hologramArrow != null)
         {
-            alreadyHidden = true;
-
-            if (hologramArrow != null)
-            {
-                hologramArrow.SetActive(false);
-                Debug.Log("Seta holográfica desativada (Meta SDK).");
-            }
+            hologramArrow.SetActive(true);
         }
+
+        // 🔹 RESET DO ESTADO
+        arrowHidden = false;
     }
 }

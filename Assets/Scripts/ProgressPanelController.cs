@@ -9,6 +9,12 @@ public class ProgressPanelController : MonoBehaviour
     public GameObject checkmarkSal;
     public GameObject checkmarkSabao;
 
+    [Header("Botão Continuar")]
+    public GameObject continueButton;
+
+    private int completedCount = 0;
+    private int totalRequired = 5;
+
     void Start()
     {
         ResetAll();
@@ -18,27 +24,61 @@ public class ProgressPanelController : MonoBehaviour
     {
         if (sample == null) return;
 
+        bool newlyActivated = false;
+
         switch (sample.sampleType)
         {
             case SampleType.Agua:
-                checkmarkAgua.SetActive(true);
+                if (!checkmarkAgua.activeSelf)
+                {
+                    checkmarkAgua.SetActive(true);
+                    newlyActivated = true;
+                }
                 break;
 
             case SampleType.Vinagre:
-                checkmarkVinagre.SetActive(true);
+                if (!checkmarkVinagre.activeSelf)
+                {
+                    checkmarkVinagre.SetActive(true);
+                    newlyActivated = true;
+                }
                 break;
 
             case SampleType.Bicarbonato:
-                checkmarkBicarbonato.SetActive(true);
+                if (!checkmarkBicarbonato.activeSelf)
+                {
+                    checkmarkBicarbonato.SetActive(true);
+                    newlyActivated = true;
+                }
                 break;
 
             case SampleType.Sal:
-                checkmarkSal.SetActive(true);
+                if (!checkmarkSal.activeSelf)
+                {
+                    checkmarkSal.SetActive(true);
+                    newlyActivated = true;
+                }
                 break;
 
             case SampleType.SabaoPo:
-                checkmarkSabao.SetActive(true);
+                if (!checkmarkSabao.activeSelf)
+                {
+                    checkmarkSabao.SetActive(true);
+                    newlyActivated = true;
+                }
                 break;
+        }
+
+        if (newlyActivated)
+        {
+            completedCount++;
+            Debug.Log("Reações concluídas: " + completedCount);
+
+            if (completedCount >= totalRequired)
+            {
+                continueButton.SetActive(true);
+                Debug.Log("Botão Continuar ativado!");
+            }
         }
     }
 
@@ -49,5 +89,10 @@ public class ProgressPanelController : MonoBehaviour
         checkmarkBicarbonato.SetActive(false);
         checkmarkSal.SetActive(false);
         checkmarkSabao.SetActive(false);
+
+        completedCount = 0;
+
+        if (continueButton != null)
+            continueButton.SetActive(false);
     }
 }

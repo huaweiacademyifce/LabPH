@@ -14,12 +14,14 @@ public class ResetLabManager : MonoBehaviour
     public XRGrabInteractable dropperGrab;
     public XRInteractionManager interactionManager;
 
-
     private Vector3 dropperStartPos;
     private Quaternion dropperStartRot;
 
     [Header("Setas holográficas")]
     public HideArrowOnGrab[] arrowScripts;
+
+    [Header("Progress Panel")]
+    public ProgressPanelController progressPanel;
 
     void Start()
     {
@@ -43,6 +45,12 @@ public class ResetLabManager : MonoBehaviour
         ResetFrascos();
         ResetDropper();
         ResetSetas();
+
+        // 🔹 resetar apenas o ProgressPanel (não a tabela)
+        if (progressPanel != null)
+        {
+            progressPanel.ResetAll();
+        }
     }
 
     void ResetFrascos()
@@ -64,43 +72,43 @@ public class ResetLabManager : MonoBehaviour
     }
 
     void ResetDropper()
-{
-    // força soltar o conta-gotas se estiver na mão
-    if (dropperGrab != null && interactionManager != null)
     {
-        interactionManager.CancelInteractableSelection(dropperGrab as IXRSelectInteractable);
-    }
-
-    Rigidbody rb = dropper.GetComponent<Rigidbody>();
-    if (rb != null)
-    {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-    }
-
-    dropper.SetPositionAndRotation(dropperStartPos, dropperStartRot);
-
-    // 🔹 reset lógico
-    if (dropperController != null)
-    {
-        dropperController.hasSample = false;
-        dropperController.currentSample = null;
-
-        // 🔹 reset visual (CORRETO)
-        if (dropperController.liquidController != null)
+        // força soltar o conta-gotas se estiver na mão
+        if (dropperGrab != null && interactionManager != null)
         {
-            dropperController.liquidController.Clear();
+            interactionManager.CancelInteractableSelection(dropperGrab as IXRSelectInteractable);
+        }
+
+        Rigidbody rb = dropper.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        dropper.SetPositionAndRotation(dropperStartPos, dropperStartRot);
+
+        // reset lógico
+        if (dropperController != null)
+        {
+            dropperController.hasSample = false;
+            dropperController.currentSample = null;
+
+            // reset visual do líquido
+            if (dropperController.liquidController != null)
+            {
+                dropperController.liquidController.Clear();
+            }
         }
     }
-}
 
     void ResetSetas()
     {
         foreach (HideArrowOnGrab arrow in arrowScripts)
         {
-            if (arrow != null && arrow.hologramArrow != null)
+            if (arrow != null)
             {
-                arrow.hologramArrow.SetActive(true);
+                arrow.ShowArrow();
             }
         }
     }

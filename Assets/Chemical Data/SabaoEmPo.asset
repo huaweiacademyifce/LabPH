@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: SabaoEmPo
   m_EditorClassIdentifier: 
   sampleName: SabaoemPo
+  sampleType: 4
+  isIndicator: 0
+  indicatorType: 0
   ph: 11
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
   reactionColor: {r: 0.11372549, g: 0.8117647, b: 0.41960785, a: 0}

@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Vinagre
   m_EditorClassIdentifier: 
   sampleName: Vinagre
+  sampleType: 1
+  isIndicator: 0
+  indicatorType: 0
   ph: 3
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
   reactionColor: {r: 1, g: 0.30980393, b: 0.4745098, a: 0}
