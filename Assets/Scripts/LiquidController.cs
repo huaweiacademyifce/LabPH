@@ -3,21 +3,50 @@ using UnityEngine;
 
 public class LiquidController : MonoBehaviour
 {
-    // Custom shader props (se existirem)
     private static readonly int ReactionColorProp = Shader.PropertyToID("_ReactionColor");
     private static readonly int LerpFactorProp = Shader.PropertyToID("_LerpFactor");
 
-    // Standard / URP fallback props
-    private static readonly int ColorProp = Shader.PropertyToID("_Color");       // Standard
-    private static readonly int BaseColorProp = Shader.PropertyToID("_BaseColor"); // URP Lit
+    private static readonly int ColorProp = Shader.PropertyToID("_Color");
+    private static readonly int BaseColorProp = Shader.PropertyToID("_BaseColor");
 
     private MaterialPropertyBlock mpb;
     private Renderer rend;
+
+    // ESTADO INICIAL DO SHADER
+    private Color initialBaseColor;
 
     private void Awake()
     {
         rend = GetComponent<Renderer>();
         mpb = new MaterialPropertyBlock();
+    }
+
+    // SALVAR ESTADO INICIAL
+    public void SaveInitialState()
+    {
+        var mat = rend.sharedMaterial;
+
+        if (mat != null && mat.HasProperty(BaseColorProp))
+        {
+            initialBaseColor = mat.GetColor(BaseColorProp);
+        }
+    }
+
+    // RESTAURAR ESTADO INICIAL
+    public void RestoreInitialState()
+    {
+        var mat = rend.sharedMaterial;
+        if (mat == null) return;
+
+        rend.GetPropertyBlock(mpb);
+
+        if (mat.HasProperty(ReactionColorProp))
+            mpb.SetColor(ReactionColorProp, initialBaseColor);
+
+        if (mat.HasProperty(LerpFactorProp))
+            mpb.SetFloat(LerpFactorProp, 0f);
+
+        rend.SetPropertyBlock(mpb);
     }
 
     public void ApplyReaction(Color finalColor, float duration = 1f)
@@ -36,13 +65,10 @@ public class LiquidController : MonoBehaviour
     {
         if (rend == null) yield break;
 
-        // Garante alpha visível (exceto se você QUISER transparente)
         if (targetColor.a <= 0.001f)
             targetColor.a = 1f;
 
         float t = 0f;
-
-        // Pega cor atual (fallback)
         Color startColor = GetCurrentColor();
 
         while (t < duration)
@@ -59,7 +85,6 @@ public class LiquidController : MonoBehaviour
 
     public void Clear()
     {
-        // “limpar” = transparente
         SetColor(new Color(1f, 1f, 1f, 0f));
     }
 
@@ -71,7 +96,6 @@ public class LiquidController : MonoBehaviour
         if (mat.HasProperty(ColorProp)) return mat.GetColor(ColorProp);
         if (mat.HasProperty(BaseColorProp)) return mat.GetColor(BaseColorProp);
 
-        // se estiver usando shader custom, não dá pra ler fácil via MPB
         return Color.white;
     }
 
@@ -80,7 +104,6 @@ public class LiquidController : MonoBehaviour
         var mat = rend.sharedMaterial;
         if (mat == null) return;
 
-        // 1) Se o shader custom existir, usa ele
         if (mat.HasProperty(ReactionColorProp) && mat.HasProperty(LerpFactorProp))
         {
             rend.GetPropertyBlock(mpb);
@@ -90,7 +113,6 @@ public class LiquidController : MonoBehaviour
             return;
         }
 
-        // 2) Fallback Standard
         if (mat.HasProperty(ColorProp))
         {
             rend.GetPropertyBlock(mpb);
@@ -99,7 +121,6 @@ public class LiquidController : MonoBehaviour
             return;
         }
 
-        // 3) Fallback URP Lit
         if (mat.HasProperty(BaseColorProp))
         {
             rend.GetPropertyBlock(mpb);

@@ -23,9 +23,11 @@ public class ResetLabManager : MonoBehaviour
     [Header("Progress Panel")]
     public ProgressPanelController progressPanel;
 
+    [Header("Líquidos internos")]
+    public LiquidController[] liquids;
+
     void Start()
     {
-        // salva estado inicial dos frascos
         frascoPosicoes = new Vector3[frascos.Length];
         frascoRotacoes = new Quaternion[frascos.Length];
 
@@ -35,9 +37,15 @@ public class ResetLabManager : MonoBehaviour
             frascoRotacoes[i] = frascos[i].rotation;
         }
 
-        // salva estado inicial do conta-gotas
         dropperStartPos = dropper.position;
         dropperStartRot = dropper.rotation;
+
+        // SALVAR ESTADO INICIAL DOS LÍQUIDOS
+        for (int i = 0; i < liquids.Length; i++)
+        {
+            if (liquids[i] != null)
+                liquids[i].SaveInitialState();
+        }
     }
 
     public void ResetLab()
@@ -45,12 +53,10 @@ public class ResetLabManager : MonoBehaviour
         ResetFrascos();
         ResetDropper();
         ResetSetas();
+        ResetLiquids();
 
-        // 🔹 resetar apenas o ProgressPanel (não a tabela)
         if (progressPanel != null)
-        {
             progressPanel.ResetAll();
-        }
     }
 
     void ResetFrascos()
@@ -58,6 +64,7 @@ public class ResetLabManager : MonoBehaviour
         for (int i = 0; i < frascos.Length; i++)
         {
             Rigidbody rb = frascos[i].GetComponent<Rigidbody>();
+
             if (rb != null)
             {
                 rb.velocity = Vector3.zero;
@@ -73,13 +80,13 @@ public class ResetLabManager : MonoBehaviour
 
     void ResetDropper()
     {
-        // força soltar o conta-gotas se estiver na mão
         if (dropperGrab != null && interactionManager != null)
         {
             interactionManager.CancelInteractableSelection(dropperGrab as IXRSelectInteractable);
         }
 
         Rigidbody rb = dropper.GetComponent<Rigidbody>();
+
         if (rb != null)
         {
             rb.velocity = Vector3.zero;
@@ -88,17 +95,13 @@ public class ResetLabManager : MonoBehaviour
 
         dropper.SetPositionAndRotation(dropperStartPos, dropperStartRot);
 
-        // reset lógico
         if (dropperController != null)
         {
             dropperController.hasSample = false;
             dropperController.currentSample = null;
 
-            // reset visual do líquido
             if (dropperController.liquidController != null)
-            {
                 dropperController.liquidController.Clear();
-            }
         }
     }
 
@@ -107,9 +110,16 @@ public class ResetLabManager : MonoBehaviour
         foreach (HideArrowOnGrab arrow in arrowScripts)
         {
             if (arrow != null)
-            {
                 arrow.ShowArrow();
-            }
+        }
+    }
+
+    void ResetLiquids()
+    {
+        for (int i = 0; i < liquids.Length; i++)
+        {
+            if (liquids[i] != null)
+                liquids[i].RestoreInitialState();
         }
     }
 }

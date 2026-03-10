@@ -19094,6 +19094,12 @@ MonoBehaviour:
   - {fileID: 370584188}
   - {fileID: 744543124}
   progressPanel: {fileID: 930380629}
+  liquids:
+  - {fileID: 424534232}
+  - {fileID: 1936877916}
+  - {fileID: 1987471132}
+  - {fileID: 424534232}
+  - {fileID: 1887653624}
 --- !u!4 &1149728209
 Transform:
   m_ObjectHideFlags: 0
@@ -26285,6 +26291,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8c48351a5e840524584e3c80ae3b582d, type: 3}
       propertyPath: m_Name
       value: 250 mL Beaker.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8c48351a5e840524584e3c80ae3b582d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2352492634110745966, guid: 8c48351a5e840524584e3c80ae3b582d, type: 3}
       propertyPath: m_Name
