@@ -90,9 +90,11 @@ public class ReactionManager : MonoBehaviour
 
             case IndicatorType.AlaranjadoMetila:
 
-                ColorUtility.TryParseHtmlString("#FF8C00", out novaCor);
-                novaCor.a = 0.5f;
-                break;
+            ColorUtility.TryParseHtmlString("#FFC300", out novaCor);
+            novaCor.a = 0.5f;
+            break;
+
+    break;
         }
 
         frascoIndicadorRenderer.material.color = novaCor;
@@ -106,6 +108,41 @@ public class ReactionManager : MonoBehaviour
     {
         switch (indicator)
         {
+            // -------------------------
+           // ALARANJADO DE METILA
+          // -------------------------
+
+         case IndicatorType.AlaranjadoMetila:
+
+             switch (sample)
+             {
+                case SampleType.Agua:
+
+                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloAgua);
+                    return amareloAgua;
+
+                case SampleType.Vinagre:
+
+                    ColorUtility.TryParseHtmlString("#FF0000", out var vermelho);
+                    return vermelho;
+
+                case SampleType.Sal:
+
+                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloSal);
+                    return amareloSal;
+
+                case SampleType.Bicarbonato:
+
+                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloBicarbonato);
+                    return amareloBicarbonato;
+
+                case SampleType.SabaoPo:
+
+                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloSabao);
+                    return amareloSabao;
+             }
+             break;
+             
             // -------------------------
             // FENOLFTALEÍNA
             // -------------------------
