@@ -46,11 +46,6 @@ public class ResetLabManager : MonoBehaviour
 
     public void ResetLab()
     {
-        // primeiro troca o indicador
-        if (reactionManager != null)
-        {
-            reactionManager.OnContinueButtonPressed();
-        }
 
         // depois reseta o laboratório
         ResetFrascos();

@@ -30,27 +30,15 @@ public class ReactionManager : MonoBehaviour
     [Header("Estado Atual")]
     public ChemicalReference currentFlask;
 
-    // ===============================
-    // START
-    // ===============================
-
     private void Start()
     {
         AtualizarCorDoIndicador();
     }
 
-    // ===============================
-    // BOTÃO CONTINUAR
-    // ===============================
-
     public void OnContinueButtonPressed()
     {
         AdvanceIndicator();
     }
-
-    // ===============================
-    // TROCA DE INDICADOR
-    // ===============================
 
     private void AdvanceIndicator()
     {
@@ -87,27 +75,23 @@ public class ReactionManager : MonoBehaviour
 
                 ColorUtility.TryParseHtmlString("#5A2D82", out novaCor);
                 novaCor.a = 0.5f;
-
                 break;
 
             case IndicatorType.Fenolftaleina:
 
-                novaCor = new Color(1f, 1f, 1f, 0.15f);
-
+                novaCor = new Color(1f,1f,1f,0.15f);
                 break;
 
             case IndicatorType.AzulBromotimol:
 
-                ColorUtility.TryParseHtmlString("#1E90FF", out novaCor);
+                ColorUtility.TryParseHtmlString("#3CB371", out novaCor);
                 novaCor.a = 0.5f;
-
                 break;
 
             case IndicatorType.AlaranjadoMetila:
 
                 ColorUtility.TryParseHtmlString("#FF8C00", out novaCor);
                 novaCor.a = 0.5f;
-
                 break;
         }
 
@@ -115,16 +99,16 @@ public class ReactionManager : MonoBehaviour
     }
 
     // ===============================
-    // CALCULAR COR DA REAÇÃO
+    // COR DAS REAÇÕES
     // ===============================
 
     private Color GetReactionColor(IndicatorType indicator, SampleType sample)
     {
         switch (indicator)
         {
-            // -----------------------
+            // -------------------------
             // FENOLFTALEÍNA
-            // -----------------------
+            // -------------------------
 
             case IndicatorType.Fenolftaleina:
 
@@ -133,7 +117,6 @@ public class ReactionManager : MonoBehaviour
                     case SampleType.Agua:
                     case SampleType.Vinagre:
                     case SampleType.Sal:
-
                         return Color.white;
 
                     case SampleType.Bicarbonato:
@@ -146,44 +129,71 @@ public class ReactionManager : MonoBehaviour
                         ColorUtility.TryParseHtmlString("#FF1493", out var rosaForte);
                         return rosaForte;
                 }
-
                 break;
 
+            // -------------------------
+            // AZUL DE BROMOTIMOL
+            // -------------------------
 
-            // -----------------------
+            case IndicatorType.AzulBromotimol:
+
+                switch (sample)
+                {
+                    case SampleType.Agua:
+
+                        ColorUtility.TryParseHtmlString("#00A86B", out var verdeAgua);
+                        return verdeAgua;
+
+                    case SampleType.Vinagre:
+
+                        ColorUtility.TryParseHtmlString("#FFD399", out var amarelo);
+                        return amarelo;
+
+                    case SampleType.Sal:
+
+                        ColorUtility.TryParseHtmlString("#00A86B", out var verdeSal);
+                        return verdeSal;
+
+                    case SampleType.Bicarbonato:
+
+                        ColorUtility.TryParseHtmlString("#1E90FF", out var azulClaro);
+                        return azulClaro;
+
+                    case SampleType.SabaoPo:
+
+                        ColorUtility.TryParseHtmlString("#0000FF", out var azulForte);
+                        return azulForte;
+                }
+                break;
+
+            // -------------------------
             // REPOLHO ROXO
-            // -----------------------
+            // -------------------------
 
             case IndicatorType.RepolhoRoxo:
 
                 switch (sample)
                 {
                     case SampleType.Agua:
-
                         ColorUtility.TryParseHtmlString("#6A5ACD", out var roxoClaro);
                         return roxoClaro;
 
                     case SampleType.Vinagre:
-
                         ColorUtility.TryParseHtmlString("#FF0000", out var vermelho);
                         return vermelho;
 
                     case SampleType.Bicarbonato:
-
                         ColorUtility.TryParseHtmlString("#00FF00", out var verde);
                         return verde;
 
                     case SampleType.Sal:
-
                         ColorUtility.TryParseHtmlString("#9370DB", out var roxoNeutro);
                         return roxoNeutro;
 
                     case SampleType.SabaoPo:
-
                         ColorUtility.TryParseHtmlString("#008000", out var verdeEscuro);
                         return verdeEscuro;
                 }
-
                 break;
         }
 
@@ -203,8 +213,7 @@ public class ReactionManager : MonoBehaviour
             experimentManager.RegisterReaction(frasco.data.sampleType);
 
         Debug.Log(
-            $"Reação: Indicador={CurrentIndicator} | " +
-            $"Amostra={frasco.data.sampleType}"
+            $"Reação: Indicador={CurrentIndicator} | Amostra={frasco.data.sampleType}"
         );
 
         Color reactionColor =
@@ -221,10 +230,6 @@ public class ReactionManager : MonoBehaviour
                 frasco.data.sampleType
             );
     }
-
-    // ===============================
-    // FRASCO ATUAL
-    // ===============================
 
     public void SetCurrentFlask(ChemicalReference flask)
     {

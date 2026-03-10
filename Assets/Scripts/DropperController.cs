@@ -45,8 +45,8 @@ public class DropperController : MonoBehaviour
 
             case IndicatorType.AzulBromotimol:
 
-                ColorUtility.TryParseHtmlString("#1E90FF", out var azul);
-                return azul;
+                ColorUtility.TryParseHtmlString("#3CB371", out var verdeClaro);
+                return verdeClaro;
 
             case IndicatorType.AlaranjadoMetila:
 

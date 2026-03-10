@@ -3,28 +3,35 @@ using UnityEngine.Events;
 
 public class VRButtonTrigger : MonoBehaviour
 {
+    [Header("Evento disparado ao pressionar")]
     public UnityEvent onPressed;
 
-    private bool pressed = false;
+    [Header("Evita múltiplos disparos seguidos")]
+    public float cooldown = 0.5f;
+
+    private float lastPressTime = -999f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (pressed) return;
-
         // aceita qualquer collider do controle/mão
-        if (other.GetComponentInParent<Camera>() ||
-            other.GetComponentInParent<Rigidbody>())
+        if (!other.GetComponentInParent<Rigidbody>() &&
+            !other.GetComponentInParent<Camera>())
         {
-            pressed = true;
-
-            Debug.Log("Botão VR pressionado");
-
-            onPressed.Invoke();
+            return;
         }
+
+        if (Time.time - lastPressTime < cooldown)
+            return;
+
+        lastPressTime = Time.time;
+
+        Debug.Log("Botão VR pressionado");
+        onPressed.Invoke();
     }
 
+    // caso você queira resetar manualmente em algum momento
     public void ResetButton()
     {
-        pressed = false;
+        lastPressTime = -999f;
     }
 }
