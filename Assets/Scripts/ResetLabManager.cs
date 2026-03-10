@@ -26,6 +26,9 @@ public class ResetLabManager : MonoBehaviour
     [Header("Líquidos internos")]
     public LiquidController[] liquids;
 
+    [Header("Reaction Manager")]
+    public ReactionManager reactionManager;
+
     void Start()
     {
         frascoPosicoes = new Vector3[frascos.Length];
@@ -39,17 +42,17 @@ public class ResetLabManager : MonoBehaviour
 
         dropperStartPos = dropper.position;
         dropperStartRot = dropper.rotation;
-
-        // SALVAR ESTADO INICIAL DOS LÍQUIDOS
-        for (int i = 0; i < liquids.Length; i++)
-        {
-            if (liquids[i] != null)
-                liquids[i].SaveInitialState();
-        }
     }
 
     public void ResetLab()
     {
+        // primeiro troca o indicador
+        if (reactionManager != null)
+        {
+            reactionManager.OnContinueButtonPressed();
+        }
+
+        // depois reseta o laboratório
         ResetFrascos();
         ResetDropper();
         ResetSetas();
@@ -116,10 +119,10 @@ public class ResetLabManager : MonoBehaviour
 
     void ResetLiquids()
     {
-        for (int i = 0; i < liquids.Length; i++)
+        foreach (LiquidController liquid in liquids)
         {
-            if (liquids[i] != null)
-                liquids[i].RestoreInitialState();
+            if (liquid != null)
+                liquid.ResetToBaseColor();
         }
     }
 }

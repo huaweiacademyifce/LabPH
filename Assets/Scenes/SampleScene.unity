@@ -3077,7 +3077,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236472665}
   m_LocalRotation: {x: -0.000000014901159, y: -0, z: -0.000000029802319, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -101}
+  m_LocalPosition: {x: 0, y: 0, z: -21}
   m_LocalScale: {x: 0.34932864, y: 0.2065322, z: 0.25812247}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3085,7 +3085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 74.1, y: -9.4}
+  m_AnchoredPosition: {x: 90.7, y: -11.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &236472667
@@ -5784,6 +5784,7 @@ MonoBehaviour:
   liquidController: {fileID: 543182079}
   dropSpawnPoint: {fileID: 688913847}
   dropPrefab: {fileID: 4041837416613713698, guid: 63fc939e15e1f744fb999288fd06be5e, type: 3}
+  reactionManager: {fileID: 22649159}
 --- !u!114 &370584178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7719,7 +7720,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469340790}
   m_LocalRotation: {x: -0.000000014901159, y: -0, z: -0.000000029802319, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -85}
+  m_LocalPosition: {x: 0, y: 0, z: -15.5}
   m_LocalScale: {x: 0.34932864, y: 0.2065322, z: 0.25812247}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7727,7 +7728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -133, y: -8.1}
+  m_AnchoredPosition: {x: -132.5, y: -12.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469340792
@@ -9299,7 +9300,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563255877}
   m_LocalRotation: {x: -0.000000014901159, y: -0, z: -0.000000029802319, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -90}
+  m_LocalPosition: {x: 0, y: 0, z: -17.5}
   m_LocalScale: {x: 0.34932864, y: 0.2065322, z: 0.25812247}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9307,7 +9308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -59, y: -7.8}
+  m_AnchoredPosition: {x: -53.6, y: -12.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563255879
@@ -10673,7 +10674,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634692108}
   m_LocalRotation: {x: -0.000000014901159, y: -0, z: -0.000000029802319, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -94}
+  m_LocalPosition: {x: 0, y: 0, z: -17.1}
   m_LocalScale: {x: 0.34932864, y: 0.2065322, z: 0.25812247}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10681,7 +10682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.7, y: -7.5}
+  m_AnchoredPosition: {x: 19.6, y: -12.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634692110
@@ -11921,19 +11922,19 @@ MonoBehaviour:
     checkmark: {fileID: 1866820}
   - indicator: 1
     sample: 0
-    checkmark: {fileID: 1866820}
+    checkmark: {fileID: 469340790}
   - indicator: 1
     sample: 1
-    checkmark: {fileID: 1866820}
+    checkmark: {fileID: 563255877}
   - indicator: 1
     sample: 2
-    checkmark: {fileID: 1866820}
+    checkmark: {fileID: 634692108}
   - indicator: 1
     sample: 3
-    checkmark: {fileID: 1866820}
+    checkmark: {fileID: 236472665}
   - indicator: 1
     sample: 4
-    checkmark: {fileID: 1866820}
+    checkmark: {fileID: 1664822604}
 --- !u!114 &712894491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15334,6 +15335,18 @@ MonoBehaviour:
   onPressed:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 22649159}
+        m_TargetAssemblyTypeName: ReactionManager, Assembly-CSharp
+        m_MethodName: OnContinueButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1149728208}
         m_TargetAssemblyTypeName: ResetLabManager, Assembly-CSharp
         m_MethodName: ResetLab
@@ -19100,6 +19113,7 @@ MonoBehaviour:
   - {fileID: 1987471132}
   - {fileID: 424534232}
   - {fileID: 1887653624}
+  reactionManager: {fileID: 0}
 --- !u!4 &1149728209
 Transform:
   m_ObjectHideFlags: 0
@@ -27381,7 +27395,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664822604}
   m_LocalRotation: {x: -0.000000014901159, y: -0, z: -0.000000029802319, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -102}
+  m_LocalPosition: {x: 0, y: 0, z: -18.6}
   m_LocalScale: {x: 0.34932864, y: 0.2065322, z: 0.25812247}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27389,7 +27403,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 147.9, y: -7}
+  m_AnchoredPosition: {x: 165, y: -12.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1664822606
@@ -27673,6 +27687,21 @@ MonoBehaviour:
   - indicator: 0
     sample: 4
     checkmark: {fileID: 1866820}
+  - indicator: 1
+    sample: 0
+    checkmark: {fileID: 469340790}
+  - indicator: 1
+    sample: 1
+    checkmark: {fileID: 563255877}
+  - indicator: 1
+    sample: 2
+    checkmark: {fileID: 634692108}
+  - indicator: 1
+    sample: 3
+    checkmark: {fileID: 236472665}
+  - indicator: 1
+    sample: 4
+    checkmark: {fileID: 1664822604}
 --- !u!1 &1683644515
 GameObject:
   m_ObjectHideFlags: 0

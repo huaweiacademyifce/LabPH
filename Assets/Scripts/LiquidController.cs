@@ -129,4 +129,16 @@ public class LiquidController : MonoBehaviour
             return;
         }
     }
+    public void ResetToBaseColor()
+    {
+    if (rend == null)
+        rend = GetComponent<Renderer>();
+
+    rend.GetPropertyBlock(mpb);
+
+    // volta para estado inicial do shader
+    mpb.SetFloat(LerpFactorProp, 0f);
+
+    rend.SetPropertyBlock(mpb);
+    }
 }
