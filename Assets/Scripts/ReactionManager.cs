@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ReactionManager : MonoBehaviour
 {
+    [Header("Canvas Final")]
+    public FinalCanvasController finalCanvasController;
+
     [Header("Configuração da Reação")]
     public float reactionDuration = 1.0f;
 
@@ -47,6 +50,10 @@ public class ReactionManager : MonoBehaviour
         if (currentIndicatorIndex >= indicatorOrder.Length)
         {
             Debug.Log("Experimento finalizado");
+
+            if (finalCanvasController != null)
+                finalCanvasController.ShowFinalCanvas();
+
             return;
         }
 
@@ -79,7 +86,7 @@ public class ReactionManager : MonoBehaviour
 
             case IndicatorType.Fenolftaleina:
 
-                novaCor = new Color(1f,1f,1f,0.15f);
+                novaCor = new Color(1f, 1f, 1f, 0.15f);
                 break;
 
             case IndicatorType.AzulBromotimol:
@@ -90,11 +97,11 @@ public class ReactionManager : MonoBehaviour
 
             case IndicatorType.AlaranjadoMetila:
 
-            ColorUtility.TryParseHtmlString("#FFC300", out novaCor);
-            novaCor.a = 0.5f;
-            break;
+                ColorUtility.TryParseHtmlString("#FFC300", out novaCor);
+                novaCor.a = 0.5f;
+                break;
 
-    break;
+                break;
         }
 
         frascoIndicadorRenderer.material.color = novaCor;
@@ -109,40 +116,40 @@ public class ReactionManager : MonoBehaviour
         switch (indicator)
         {
             // -------------------------
-           // ALARANJADO DE METILA
-          // -------------------------
+            // ALARANJADO DE METILA
+            // -------------------------
 
-         case IndicatorType.AlaranjadoMetila:
+            case IndicatorType.AlaranjadoMetila:
 
-             switch (sample)
-             {
-                case SampleType.Agua:
+                switch (sample)
+                {
+                    case SampleType.Agua:
 
-                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloAgua);
-                    return amareloAgua;
+                        ColorUtility.TryParseHtmlString("#FFD300", out var amareloAgua);
+                        return amareloAgua;
 
-                case SampleType.Vinagre:
+                    case SampleType.Vinagre:
 
-                    ColorUtility.TryParseHtmlString("#FF0000", out var vermelho);
-                    return vermelho;
+                        ColorUtility.TryParseHtmlString("#FF0000", out var vermelho);
+                        return vermelho;
 
-                case SampleType.Sal:
+                    case SampleType.Sal:
 
-                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloSal);
-                    return amareloSal;
+                        ColorUtility.TryParseHtmlString("#FFD300", out var amareloSal);
+                        return amareloSal;
 
-                case SampleType.Bicarbonato:
+                    case SampleType.Bicarbonato:
 
-                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloBicarbonato);
-                    return amareloBicarbonato;
+                        ColorUtility.TryParseHtmlString("#FFD300", out var amareloBicarbonato);
+                        return amareloBicarbonato;
 
-                case SampleType.SabaoPo:
+                    case SampleType.SabaoPo:
 
-                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloSabao);
-                    return amareloSabao;
-             }
-             break;
-             
+                        ColorUtility.TryParseHtmlString("#FFD300", out var amareloSabao);
+                        return amareloSabao;
+                }
+                break;
+
             // -------------------------
             // FENOLFTALEÍNA
             // -------------------------
@@ -271,5 +278,12 @@ public class ReactionManager : MonoBehaviour
     public void SetCurrentFlask(ChemicalReference flask)
     {
         currentFlask = flask;
+    }
+    public void ResetToStart()
+    {
+        currentIndicatorIndex = 0;
+        AtualizarCorDoIndicador();
+
+        Debug.Log("Indicador resetado para o início");
     }
 }
