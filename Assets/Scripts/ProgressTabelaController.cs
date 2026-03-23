@@ -44,4 +44,16 @@ public class ProgressTabelaController : MonoBehaviour
             Debug.LogWarning("Tabela NÃO encontrou combinação: " + indicator + " + " + sample);
         }
     }
+
+    // ✅ ADICIONA ISSO AQUI
+    public void ResetTabela()
+    {
+        foreach (var entry in checkmarks)
+        {
+            if (entry.checkmark != null)
+                entry.checkmark.SetActive(false);
+        }
+
+        Debug.Log("Tabela resetada!");
+    }
 }
