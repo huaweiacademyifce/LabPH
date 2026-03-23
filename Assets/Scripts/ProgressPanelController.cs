@@ -12,6 +12,9 @@ public class ProgressPanelController : MonoBehaviour
     public GameObject checkmarkSal;
     public GameObject checkmarkSabao;
 
+    [Header("Botão Continuar")]
+    public GameObject continueButton;
+
     private int completedCount = 0;
     private int totalRequired = 5;
 
@@ -57,6 +60,12 @@ public class ProgressPanelController : MonoBehaviour
         }
     }
 
+    public void ShowContinueButton()
+    {
+        if (continueButton != null)
+            continueButton.SetActive(true);
+    }
+
     public void ResetAll()
     {
         checkmarkAgua.SetActive(false);
@@ -66,5 +75,8 @@ public class ProgressPanelController : MonoBehaviour
         checkmarkSabao.SetActive(false);
 
         completedCount = 0;
+
+        if (continueButton != null)
+            continueButton.SetActive(false);
     }
 }

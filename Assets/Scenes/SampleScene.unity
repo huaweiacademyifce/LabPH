@@ -537,6 +537,7 @@ MonoBehaviour:
   checkmarkBicarbonato: {fileID: 2294213}
   checkmarkSal: {fileID: 782825}
   checkmarkSabao: {fileID: 920847115}
+  continueButton: {fileID: 908058695}
 --- !u!114 &22649158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,7 +624,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalCanvasController: {fileID: 1459120971}
-  reactionDuration: 1
   indicatorOrder: 00000000010000000200000003000000
   frascoIndicadorRenderer: {fileID: 256072895}
   progressPanel: {fileID: 930380629}
@@ -14808,6 +14808,7 @@ MonoBehaviour:
   checkmarkBicarbonato: {fileID: 2294213}
   checkmarkSal: {fileID: 782825}
   checkmarkSabao: {fileID: 920847115}
+  continueButton: {fileID: 908058695}
 --- !u!1 &931496836
 GameObject:
   m_ObjectHideFlags: 0

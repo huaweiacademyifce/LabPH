@@ -5,9 +5,6 @@ public class ReactionManager : MonoBehaviour
     [Header("Canvas Final")]
     public FinalCanvasController finalCanvasController;
 
-    [Header("Configuração da Reação")]
-    public float reactionDuration = 1.0f;
-
     [Header("Ordem dos Indicadores")]
     public IndicatorType[] indicatorOrder =
     {
@@ -20,41 +17,46 @@ public class ReactionManager : MonoBehaviour
     private int currentIndicatorIndex = 0;
     public IndicatorType CurrentIndicator => indicatorOrder[currentIndicatorIndex];
 
-    [Header("Frasco do Indicador")]
+    [Header("Referências")]
     public Renderer frascoIndicadorRenderer;
-
-    [Header("UI")]
     public ProgressPanelController progressPanel;
     public ProgressTabelaController progressTabela;
-
-    [Header("Gerenciadores")]
     public ExperimentManager experimentManager;
 
-    private void Start()
+    void Start()
     {
         AtualizarCorDoIndicador();
     }
 
-    // 🔥 CHAMADO QUANDO TERMINA TODAS AS REAÇÕES
+    // 🔥 CHAMADO QUANDO TERMINA AS 5 REAÇÕES
     public void OnAllReactionsCompleted()
     {
-        // ainda não é o último indicador
-        if (currentIndicatorIndex < indicatorOrder.Length - 1)
-        {
-            currentIndicatorIndex++;
-            AtualizarCorDoIndicador();
+        Debug.Log("Todas reações concluídas!");
 
-            if (progressPanel != null)
-                progressPanel.ResetAll();
+        // 👉 ÚLTIMO INDICADOR
+        if (CurrentIndicator == IndicatorType.AlaranjadoMetila)
+        {
+            Debug.Log("Último indicador → mostrar canvas final");
+
+            if (finalCanvasController != null)
+                finalCanvasController.ShowFinalCanvas();
 
             return;
         }
 
-        // 🔥 ÚLTIMO INDICADOR → MOSTRA CANVAS FINAL
-        Debug.Log("Última reação concluída → mostrando canvas final");
+        // 👉 INDICADORES NORMAIS
+        if (progressPanel != null)
+            progressPanel.ShowContinueButton();
+    }
 
-        if (finalCanvasController != null)
-            finalCanvasController.ShowFinalCanvas();
+    // 🔘 BOTÃO CONTINUAR (dos 3 primeiros indicadores)
+    public void OnContinueButtonPressed()
+    {
+        currentIndicatorIndex++;
+        AtualizarCorDoIndicador();
+
+        if (progressPanel != null)
+            progressPanel.ResetAll();
     }
 
     private void AtualizarCorDoIndicador()
@@ -99,18 +101,12 @@ public class ReactionManager : MonoBehaviour
             case IndicatorType.AlaranjadoMetila:
                 switch (sample)
                 {
-                    case SampleType.Agua:
-                    case SampleType.Sal:
-                    case SampleType.Bicarbonato:
-                    case SampleType.SabaoPo:
+                    case SampleType.Vinagre:
+                        return Color.red;
+                    default:
                         ColorUtility.TryParseHtmlString("#FFD300", out var amarelo);
                         return amarelo;
-
-                    case SampleType.Vinagre:
-                        ColorUtility.TryParseHtmlString("#FF0000", out var vermelho);
-                        return vermelho;
                 }
-                break;
 
             case IndicatorType.Fenolftaleina:
                 switch (sample)
@@ -118,11 +114,9 @@ public class ReactionManager : MonoBehaviour
                     case SampleType.Bicarbonato:
                         ColorUtility.TryParseHtmlString("#FF69B4", out var rosa);
                         return rosa;
-
                     case SampleType.SabaoPo:
                         ColorUtility.TryParseHtmlString("#FF1493", out var rosaForte);
                         return rosaForte;
-
                     default:
                         return Color.white;
                 }
@@ -133,15 +127,12 @@ public class ReactionManager : MonoBehaviour
                     case SampleType.Vinagre:
                         ColorUtility.TryParseHtmlString("#FFD399", out var amarelo);
                         return amarelo;
-
                     case SampleType.Bicarbonato:
                         ColorUtility.TryParseHtmlString("#1E90FF", out var azulClaro);
                         return azulClaro;
-
                     case SampleType.SabaoPo:
                         ColorUtility.TryParseHtmlString("#0000FF", out var azulForte);
                         return azulForte;
-
                     default:
                         ColorUtility.TryParseHtmlString("#00A86B", out var verde);
                         return verde;
@@ -150,20 +141,11 @@ public class ReactionManager : MonoBehaviour
             case IndicatorType.RepolhoRoxo:
                 switch (sample)
                 {
-                    case SampleType.Vinagre:
-                        return Color.red;
-
-                    case SampleType.Bicarbonato:
-                        return Color.green;
-
-                    case SampleType.SabaoPo:
-                        return new Color(0f, 0.5f, 0f);
-
-                    case SampleType.Sal:
-                        return new Color(0.58f, 0.44f, 0.86f);
-
-                    default:
-                        return new Color(0.42f, 0.35f, 0.80f);
+                    case SampleType.Vinagre: return Color.red;
+                    case SampleType.Bicarbonato: return Color.green;
+                    case SampleType.SabaoPo: return new Color(0f, 0.5f, 0f);
+                    case SampleType.Sal: return new Color(0.58f, 0.44f, 0.86f);
+                    default: return new Color(0.42f, 0.35f, 0.80f);
                 }
         }
 
