@@ -214,7 +214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1866821
 RectTransform:
   m_ObjectHideFlags: 0
@@ -531,12 +531,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0578fbe342d824f89d246a6ddb12c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reactionManager: {fileID: 22649159}
   checkmarkAgua: {fileID: 25768036}
   checkmarkVinagre: {fileID: 794596831}
   checkmarkBicarbonato: {fileID: 2294213}
   checkmarkSal: {fileID: 782825}
   checkmarkSabao: {fileID: 920847115}
-  continueButton: {fileID: 0}
 --- !u!114 &22649158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,14 +622,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad723080b7cf714ca9f66c1f1e5b6e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalCanvasController: {fileID: 0}
+  finalCanvasController: {fileID: 1459120971}
   reactionDuration: 1
   indicatorOrder: 00000000010000000200000003000000
   frascoIndicadorRenderer: {fileID: 256072895}
-  experimentManager: {fileID: 0}
   progressPanel: {fileID: 930380629}
   progressTabela: {fileID: 1677836660}
-  currentFlask: {fileID: 0}
+  experimentManager: {fileID: 0}
 --- !u!1 &25768036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,7 +1774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -17.669, y: 88.736, z: 0.009}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.627, y: 0.516}
+  m_AnchoredPosition: {x: 0.627, y: 0.515}
   m_SizeDelta: {x: 500, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &147211588
@@ -2150,7 +2149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &166718960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3022,7 +3021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &234624581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3097,7 +3096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &236472666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4632,7 +4631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &317710115
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7406,7 +7405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &469340791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8604,7 +8603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &563255878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9764,7 +9763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &634692109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12807,7 +12806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &813074078
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13113,7 +13112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &841027018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14803,12 +14802,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0578fbe342d824f89d246a6ddb12c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reactionManager: {fileID: 22649159}
   checkmarkAgua: {fileID: 25768036}
   checkmarkVinagre: {fileID: 794596831}
   checkmarkBicarbonato: {fileID: 2294213}
   checkmarkSal: {fileID: 782825}
   checkmarkSabao: {fileID: 920847115}
-  continueButton: {fileID: 908058695}
 --- !u!1 &931496836
 GameObject:
   m_ObjectHideFlags: 0
@@ -17417,7 +17416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1131430303
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18253,7 +18252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1188740960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19364,7 +19363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1299656528
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21527,6 +21526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1459120970}
+  - component: {fileID: 1459120971}
   m_Layer: 0
   m_Name: ProgressFinal
   m_TagString: Untagged
@@ -21550,6 +21550,22 @@ Transform:
   - {fileID: 147211587}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1459120971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459120969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8440af1a525d030488accef9f001a5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasFinal: {fileID: 1459120969}
+  resetLabManager: {fileID: 1149728208}
+  reactionManager: {fileID: 22649159}
+  progressTabela: {fileID: 1677836660}
 --- !u!1 &1468932600
 GameObject:
   m_ObjectHideFlags: 0
@@ -22981,7 +22997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1589920250
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24280,7 +24296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1664822605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24462,7 +24478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1670359742
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25622,33 +25638,9 @@ MonoBehaviour:
   onPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1149728208}
-        m_TargetAssemblyTypeName: ResetLabManager, Assembly-CSharp
-        m_MethodName: ResetLab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 22649159}
-        m_TargetAssemblyTypeName: ReactionManager, Assembly-CSharp
-        m_MethodName: ResetToStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1459120971}
         m_TargetAssemblyTypeName: FinalCanvasController, Assembly-CSharp
-        m_MethodName: HideFinalCanvas
+        m_MethodName: OnFinalContinue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26115,7 +26107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1785880267
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26852,7 +26844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1909147020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28302,7 +28294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2013092494
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28408,7 +28400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2030388093
 RectTransform:
   m_ObjectHideFlags: 0
