@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ReactionManager : MonoBehaviour
 {
-    [Header("Configuração da Reação")]
-    public float reactionDuration = 1.0f;
+    [Header("Canvas Final")]
+    public FinalCanvasController finalCanvasController;
 
     [Header("Ordem dos Indicadores")]
     public IndicatorType[] indicatorOrder =
@@ -17,50 +17,47 @@ public class ReactionManager : MonoBehaviour
     private int currentIndicatorIndex = 0;
     public IndicatorType CurrentIndicator => indicatorOrder[currentIndicatorIndex];
 
-    [Header("Frasco do Indicador")]
+    [Header("Referências")]
     public Renderer frascoIndicadorRenderer;
-
-    [Header("Gerenciadores")]
-    public ExperimentManager experimentManager;
-
-    [Header("UI de Progresso")]
     public ProgressPanelController progressPanel;
     public ProgressTabelaController progressTabela;
+    public ExperimentManager experimentManager;
 
-    [Header("Estado Atual")]
-    public ChemicalReference currentFlask;
-
-    private void Start()
+    void Start()
     {
         AtualizarCorDoIndicador();
     }
 
-    public void OnContinueButtonPressed()
+    // 🔥 CHAMADO QUANDO TERMINA AS 5 REAÇÕES
+    public void OnAllReactionsCompleted()
     {
-        AdvanceIndicator();
-    }
+        Debug.Log("Todas reações concluídas!");
 
-    private void AdvanceIndicator()
-    {
-        currentIndicatorIndex++;
-
-        if (currentIndicatorIndex >= indicatorOrder.Length)
+        // 👉 ÚLTIMO INDICADOR
+        if (CurrentIndicator == IndicatorType.AlaranjadoMetila)
         {
-            Debug.Log("Experimento finalizado");
+            Debug.Log("Último indicador → mostrar canvas final");
+
+            if (finalCanvasController != null)
+                finalCanvasController.ShowFinalCanvas();
+
             return;
         }
 
-        Debug.Log("Novo indicador: " + CurrentIndicator);
+        // 👉 INDICADORES NORMAIS
+        if (progressPanel != null)
+            progressPanel.ShowContinueButton();
+    }
 
+    // 🔘 BOTÃO CONTINUAR (dos 3 primeiros indicadores)
+    public void OnContinueButtonPressed()
+    {
+        currentIndicatorIndex++;
         AtualizarCorDoIndicador();
 
         if (progressPanel != null)
             progressPanel.ResetAll();
     }
-
-    // ===============================
-    // COR DO FRASCO INDICADOR
-    // ===============================
 
     private void AtualizarCorDoIndicador()
     {
@@ -72,175 +69,92 @@ public class ReactionManager : MonoBehaviour
         switch (CurrentIndicator)
         {
             case IndicatorType.RepolhoRoxo:
-
                 ColorUtility.TryParseHtmlString("#5A2D82", out novaCor);
                 novaCor.a = 0.5f;
                 break;
 
             case IndicatorType.Fenolftaleina:
-
-                novaCor = new Color(1f,1f,1f,0.15f);
+                novaCor = new Color(1f, 1f, 1f, 0.15f);
                 break;
 
             case IndicatorType.AzulBromotimol:
-
                 ColorUtility.TryParseHtmlString("#3CB371", out novaCor);
                 novaCor.a = 0.5f;
                 break;
 
             case IndicatorType.AlaranjadoMetila:
-
-            ColorUtility.TryParseHtmlString("#FFC300", out novaCor);
-            novaCor.a = 0.5f;
-            break;
-
-    break;
+                ColorUtility.TryParseHtmlString("#FFC300", out novaCor);
+                novaCor.a = 0.5f;
+                break;
         }
 
         frascoIndicadorRenderer.material.color = novaCor;
     }
 
     // ===============================
-    // COR DAS REAÇÕES
+    // CORES DAS REAÇÕES
     // ===============================
-
     private Color GetReactionColor(IndicatorType indicator, SampleType sample)
     {
         switch (indicator)
         {
-            // -------------------------
-           // ALARANJADO DE METILA
-          // -------------------------
-
-         case IndicatorType.AlaranjadoMetila:
-
-             switch (sample)
-             {
-                case SampleType.Agua:
-
-                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloAgua);
-                    return amareloAgua;
-
-                case SampleType.Vinagre:
-
-                    ColorUtility.TryParseHtmlString("#FF0000", out var vermelho);
-                    return vermelho;
-
-                case SampleType.Sal:
-
-                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloSal);
-                    return amareloSal;
-
-                case SampleType.Bicarbonato:
-
-                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloBicarbonato);
-                    return amareloBicarbonato;
-
-                case SampleType.SabaoPo:
-
-                    ColorUtility.TryParseHtmlString("#FFD300", out var amareloSabao);
-                    return amareloSabao;
-             }
-             break;
-             
-            // -------------------------
-            // FENOLFTALEÍNA
-            // -------------------------
+            case IndicatorType.AlaranjadoMetila:
+                switch (sample)
+                {
+                    case SampleType.Vinagre:
+                        return Color.red;
+                    default:
+                        ColorUtility.TryParseHtmlString("#FFD300", out var amarelo);
+                        return amarelo;
+                }
 
             case IndicatorType.Fenolftaleina:
-
                 switch (sample)
                 {
-                    case SampleType.Agua:
-                    case SampleType.Vinagre:
-                    case SampleType.Sal:
-                        return Color.white;
-
                     case SampleType.Bicarbonato:
-
                         ColorUtility.TryParseHtmlString("#FF69B4", out var rosa);
                         return rosa;
-
                     case SampleType.SabaoPo:
-
                         ColorUtility.TryParseHtmlString("#FF1493", out var rosaForte);
                         return rosaForte;
+                    default:
+                        return Color.white;
                 }
-                break;
-
-            // -------------------------
-            // AZUL DE BROMOTIMOL
-            // -------------------------
 
             case IndicatorType.AzulBromotimol:
-
                 switch (sample)
                 {
-                    case SampleType.Agua:
-
-                        ColorUtility.TryParseHtmlString("#00A86B", out var verdeAgua);
-                        return verdeAgua;
-
                     case SampleType.Vinagre:
-
                         ColorUtility.TryParseHtmlString("#FFD399", out var amarelo);
                         return amarelo;
-
-                    case SampleType.Sal:
-
-                        ColorUtility.TryParseHtmlString("#00A86B", out var verdeSal);
-                        return verdeSal;
-
                     case SampleType.Bicarbonato:
-
                         ColorUtility.TryParseHtmlString("#1E90FF", out var azulClaro);
                         return azulClaro;
-
                     case SampleType.SabaoPo:
-
                         ColorUtility.TryParseHtmlString("#0000FF", out var azulForte);
                         return azulForte;
+                    default:
+                        ColorUtility.TryParseHtmlString("#00A86B", out var verde);
+                        return verde;
                 }
-                break;
-
-            // -------------------------
-            // REPOLHO ROXO
-            // -------------------------
 
             case IndicatorType.RepolhoRoxo:
-
                 switch (sample)
                 {
-                    case SampleType.Agua:
-                        ColorUtility.TryParseHtmlString("#6A5ACD", out var roxoClaro);
-                        return roxoClaro;
-
-                    case SampleType.Vinagre:
-                        ColorUtility.TryParseHtmlString("#FF0000", out var vermelho);
-                        return vermelho;
-
-                    case SampleType.Bicarbonato:
-                        ColorUtility.TryParseHtmlString("#00FF00", out var verde);
-                        return verde;
-
-                    case SampleType.Sal:
-                        ColorUtility.TryParseHtmlString("#9370DB", out var roxoNeutro);
-                        return roxoNeutro;
-
-                    case SampleType.SabaoPo:
-                        ColorUtility.TryParseHtmlString("#008000", out var verdeEscuro);
-                        return verdeEscuro;
+                    case SampleType.Vinagre: return Color.red;
+                    case SampleType.Bicarbonato: return Color.green;
+                    case SampleType.SabaoPo: return new Color(0f, 0.5f, 0f);
+                    case SampleType.Sal: return new Color(0.58f, 0.44f, 0.86f);
+                    default: return new Color(0.42f, 0.35f, 0.80f);
                 }
-                break;
         }
 
         return Color.white;
     }
 
     // ===============================
-    // QUANDO UMA GOTA CAI
+    // QUANDO A GOTA CAI
     // ===============================
-
     public void RegisterDrop(ChemicalReference frasco)
     {
         if (frasco == null || frasco.data == null)
@@ -249,12 +163,7 @@ public class ReactionManager : MonoBehaviour
         if (experimentManager != null)
             experimentManager.RegisterReaction(frasco.data.sampleType);
 
-        Debug.Log(
-            $"Reação: Indicador={CurrentIndicator} | Amostra={frasco.data.sampleType}"
-        );
-
-        Color reactionColor =
-            GetReactionColor(CurrentIndicator, frasco.data.sampleType);
+        Color reactionColor = GetReactionColor(CurrentIndicator, frasco.data.sampleType);
 
         frasco.React(reactionColor);
 
@@ -268,8 +177,9 @@ public class ReactionManager : MonoBehaviour
             );
     }
 
-    public void SetCurrentFlask(ChemicalReference flask)
+    public void ResetToStart()
     {
-        currentFlask = flask;
+        currentIndicatorIndex = 0;
+        AtualizarCorDoIndicador();
     }
 }

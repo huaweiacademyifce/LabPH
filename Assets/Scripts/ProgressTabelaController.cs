@@ -31,17 +31,29 @@ public class ProgressTabelaController : MonoBehaviour
     }
 
     public void MarkReactionCompleted(IndicatorType indicator, SampleType sample)
-{
-    var key = (indicator, sample);
+    {
+        var key = (indicator, sample);
 
-    if (lookup.TryGetValue(key, out GameObject checkmark))
-    {
-        checkmark.SetActive(true);
-        Debug.Log("Tabela marcada: " + indicator + " + " + sample);
+        if (lookup.TryGetValue(key, out GameObject checkmark))
+        {
+            checkmark.SetActive(true);
+            Debug.Log("Tabela marcada: " + indicator + " + " + sample);
+        }
+        else
+        {
+            Debug.LogWarning("Tabela NÃO encontrou combinação: " + indicator + " + " + sample);
+        }
     }
-    else
+
+    // ✅ ADICIONA ISSO AQUI
+    public void ResetTabela()
     {
-        Debug.LogWarning("Tabela NÃO encontrou combinação: " + indicator + " + " + sample);
+        foreach (var entry in checkmarks)
+        {
+            if (entry.checkmark != null)
+                entry.checkmark.SetActive(false);
+        }
+
+        Debug.Log("Tabela resetada!");
     }
-}
 }

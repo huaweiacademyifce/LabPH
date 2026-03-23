@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ProgressPanelController : MonoBehaviour
 {
+    [Header("Reaction Manager")]
+    public ReactionManager reactionManager;
+
     [Header("Checkmarks")]
     public GameObject checkmarkAgua;
     public GameObject checkmarkVinagre;
@@ -29,57 +32,38 @@ public class ProgressPanelController : MonoBehaviour
         switch (sample.sampleType)
         {
             case SampleType.Agua:
-                if (!checkmarkAgua.activeSelf)
-                {
-                    checkmarkAgua.SetActive(true);
-                    newlyActivated = true;
-                }
+                if (!checkmarkAgua.activeSelf) { checkmarkAgua.SetActive(true); newlyActivated = true; }
                 break;
-
             case SampleType.Vinagre:
-                if (!checkmarkVinagre.activeSelf)
-                {
-                    checkmarkVinagre.SetActive(true);
-                    newlyActivated = true;
-                }
+                if (!checkmarkVinagre.activeSelf) { checkmarkVinagre.SetActive(true); newlyActivated = true; }
                 break;
-
             case SampleType.Bicarbonato:
-                if (!checkmarkBicarbonato.activeSelf)
-                {
-                    checkmarkBicarbonato.SetActive(true);
-                    newlyActivated = true;
-                }
+                if (!checkmarkBicarbonato.activeSelf) { checkmarkBicarbonato.SetActive(true); newlyActivated = true; }
                 break;
-
             case SampleType.Sal:
-                if (!checkmarkSal.activeSelf)
-                {
-                    checkmarkSal.SetActive(true);
-                    newlyActivated = true;
-                }
+                if (!checkmarkSal.activeSelf) { checkmarkSal.SetActive(true); newlyActivated = true; }
                 break;
-
             case SampleType.SabaoPo:
-                if (!checkmarkSabao.activeSelf)
-                {
-                    checkmarkSabao.SetActive(true);
-                    newlyActivated = true;
-                }
+                if (!checkmarkSabao.activeSelf) { checkmarkSabao.SetActive(true); newlyActivated = true; }
                 break;
         }
 
         if (newlyActivated)
         {
             completedCount++;
-            Debug.Log("Reações concluídas: " + completedCount);
 
             if (completedCount >= totalRequired)
             {
-                continueButton.SetActive(true);
-                Debug.Log("Botão Continuar ativado!");
+                if (reactionManager != null)
+                    reactionManager.OnAllReactionsCompleted();
             }
         }
+    }
+
+    public void ShowContinueButton()
+    {
+        if (continueButton != null)
+            continueButton.SetActive(true);
     }
 
     public void ResetAll()
