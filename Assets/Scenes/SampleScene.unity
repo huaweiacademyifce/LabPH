@@ -3034,8 +3034,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284949026
-  m_fontColor: {r: 0.13333334, g: 0.13333334, b: 0.4039216, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3293,8 +3293,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284949026
-  m_fontColor: {r: 0.13333334, g: 0.13333334, b: 0.4039216, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7845,7 +7845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -166.1, y: 95.5}
+  m_AnchoredPosition: {x: -177, y: 232}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430326427
@@ -7868,7 +7868,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Utilize o conta gotas para gotejar o indicador selecionado nas amostras
+  m_text: "Segura o conta gotas com a m\xE3o direita e o frasco indicador com a m\xE3o
+    esquerda\nPegue e aproxime o conta gotas do frasco indicado para absorver\na
+    subst\xE2ncia.\nAp\xF3s absorvido a subst\xE2ncia, aproxime o conta gota\ndo
+    tampo dos outros frascos para gotejar.\nRepita o processo e observe a rea\xE7\xE3o"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14396,7 +14399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 9d39b3bc9e2854a45856a99023d6bf5e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19256,8 +19259,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284949026
-  m_fontColor: {r: 0.13333334, g: 0.13333334, b: 0.4039216, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19721,7 +19724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: afc2022c0ad88c844962e6348fc68701, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22828,7 +22831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0ba1f6242fdfdf54c80f065a81b0f484, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23226,8 +23229,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284949026
-  m_fontColor: {r: 0.13333334, g: 0.13333334, b: 0.4039216, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -28509,15 +28512,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692382480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 19}
+  m_LocalScale: {x: 1, y: 1.6455516, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 170291901}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 65}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692382482
@@ -29206,6 +29209,79 @@ MonoBehaviour:
   installationRoutineCheckpoint:
     _installationRoutineId: 
     _installationVariants: []
+--- !u!1001 &1739738903
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8.068194
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20.09684
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8.105
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.7934
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7238
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.88044
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.026898734
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.68880045
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.023248278
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.72407866
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.194
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -87.132
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -175.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_Name
+      value: testeseta_labQ-OK
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f9955c57ee0d4742b07c0928d8fa8ee, type: 3}
 --- !u!1 &1740503451
 GameObject:
   m_ObjectHideFlags: 0
@@ -30878,7 +30954,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 09199cad0a7697e4da2adbab2035d75c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -33929,3 +34005,4 @@ SceneRoots:
   - {fileID: 510780134}
   - {fileID: 1637933307}
   - {fileID: 1459623368}
+  - {fileID: 1739738903}
