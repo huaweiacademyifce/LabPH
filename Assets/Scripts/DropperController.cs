@@ -40,8 +40,11 @@ public class DropperController : MonoBehaviour
                 return roxo;
 
             case IndicatorType.Fenolftaleina:
-
-                return new Color(1f,1f,1f,0.15f);
+                {
+                    ColorUtility.TryParseHtmlString("#F0DF86", out var amareloClaro);
+                    amareloClaro.a = 0.25f; // 👈 controla visibilidade no conta-gotas
+                    return amareloClaro;
+                }
 
             case IndicatorType.AzulBromotimol:
 

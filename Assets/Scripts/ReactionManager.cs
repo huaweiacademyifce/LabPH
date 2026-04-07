@@ -118,7 +118,7 @@ public class ReactionManager : MonoBehaviour
                         ColorUtility.TryParseHtmlString("#FF1493", out var rosaForte);
                         return rosaForte;
                     default:
-                        return Color.white;
+                        return new Color(1f, 1f, 1f, 0f);
                 }
 
             case IndicatorType.AzulBromotimol:
