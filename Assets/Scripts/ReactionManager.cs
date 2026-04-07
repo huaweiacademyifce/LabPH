@@ -88,8 +88,7 @@ public class ReactionManager : MonoBehaviour
                 break;
         }
 
-        frascoIndicadorRenderer.material.SetColor("_BaseColor", novaCor);
-        frascoIndicadorRenderer.material.SetFloat("_Alpha", novaCor.a);
+        frascoIndicadorRenderer.material.color = novaCor;
     }
 
     // ===============================
@@ -119,7 +118,7 @@ public class ReactionManager : MonoBehaviour
                         ColorUtility.TryParseHtmlString("#FF1493", out var rosaForte);
                         return rosaForte;
                     default:
-                        return new Color(1f, 1f, 1f, 0.05f);
+                        return new Color(1f, 1f, 1f, 0f);
                 }
 
             case IndicatorType.AzulBromotimol:
