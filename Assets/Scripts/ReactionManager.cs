@@ -134,7 +134,7 @@ public class ReactionManager : MonoBehaviour
                         ColorUtility.TryParseHtmlString("#FF1493", out var rosaForte);
                         return rosaForte;
                     default:
-                        return new Color(1f, 1f, 1f, 0f);
+                        return Color.clear;
                 }
 
             case IndicatorType.AzulBromotimol:
@@ -181,7 +181,10 @@ public class ReactionManager : MonoBehaviour
 
         Color reactionColor = GetReactionColor(CurrentIndicator, frasco.data.sampleType);
 
-        frasco.React(reactionColor);
+        if (reactionColor != Color.clear)
+        {
+            frasco.React(reactionColor);
+        }
 
         if (progressPanel != null)
             progressPanel.MarkCompleted(frasco.data);
