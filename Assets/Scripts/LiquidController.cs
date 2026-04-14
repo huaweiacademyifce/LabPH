@@ -145,13 +145,17 @@ public class LiquidController : MonoBehaviour
     }
     public void ResetLiquid()
     {
-        material.SetFloat("_LerpFactor", 0f);
+        if (rend == null)
+            rend = GetComponent<Renderer>();
 
-    // 🔥 ESSENCIAL
-        material.SetColor("_ReactionColor", Color.clear);
+        rend.GetPropertyBlock(mpb);
 
-    // 🔥 GARANTE base correta
-    // (opcional, mas seguro)
-    // material.SetColor("_BaseColor", originalBaseColor);
+    // 🔥 limpa reação
+        mpb.SetFloat(LerpFactorProp, 0f);
+
+    // 🔥 MUITO IMPORTANTE
+        mpb.SetColor(ReactionColorProp, Color.clear);
+
+        rend.SetPropertyBlock(mpb);
     }
 }
