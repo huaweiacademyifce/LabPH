@@ -23,6 +23,18 @@ public class ReactionManager : MonoBehaviour
     public ProgressTabelaController progressTabela;
     public ExperimentManager experimentManager;
 
+    [Header("Frascos")]
+    public ChemicalReference[] allFlasks;
+
+    public void ResetAllFlasks()
+    {
+        foreach (var flask in allFlasks)
+        {
+        if (flask != null)
+            flask.ResetVisual();
+        }
+    }
+
     void Start()
     {
         AtualizarCorDoIndicador();
@@ -53,11 +65,15 @@ public class ReactionManager : MonoBehaviour
     public void OnContinueButtonPressed()
     {
         currentIndicatorIndex++;
+
         AtualizarCorDoIndicador();
 
         if (progressPanel != null)
             progressPanel.ResetAll();
-    }
+
+    // 🔥 ESSENCIAL
+        ResetAllFlasks();
+    }   
 
     private void AtualizarCorDoIndicador()
     {

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LiquidController : MonoBehaviour
 {
+    private Material material;
     private static readonly int ReactionColorProp = Shader.PropertyToID("_ReactionColor");
     private static readonly int LerpFactorProp = Shader.PropertyToID("_LerpFactor");
 
@@ -19,6 +20,7 @@ public class LiquidController : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         mpb = new MaterialPropertyBlock();
+        material = GetComponent<Renderer>().material;
     }
 
     // SALVAR ESTADO INICIAL
@@ -140,5 +142,16 @@ public class LiquidController : MonoBehaviour
     mpb.SetFloat(LerpFactorProp, 0f);
 
     rend.SetPropertyBlock(mpb);
+    }
+    public void ResetLiquid()
+    {
+        material.SetFloat("_LerpFactor", 0f);
+
+    // 🔥 ESSENCIAL
+        material.SetColor("_ReactionColor", Color.clear);
+
+    // 🔥 GARANTE base correta
+    // (opcional, mas seguro)
+    // material.SetColor("_BaseColor", originalBaseColor);
     }
 }

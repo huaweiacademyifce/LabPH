@@ -65,21 +65,27 @@ public class DropperController : MonoBehaviour
         if (!hasSample || dropPrefab == null) return;
 
         GameObject drop = Instantiate(
-            dropPrefab,
-            dropSpawnPoint.position,
-            Quaternion.identity
+        dropPrefab,
+        dropSpawnPoint.position,
+        Quaternion.identity
         );
 
-        Renderer r = drop.GetComponent<Renderer>();
+    Renderer r = drop.GetComponent<Renderer>();
 
-        if (r != null)
-            r.material.color = GetIndicatorColor();
+    if (r != null)
+        r.material.color = GetIndicatorColor();
 
-        hasSample = false;
+    // 🔥 NOVO
+    DropCollision dropCollision = drop.GetComponent<DropCollision>();
 
-        if (liquidController != null)
-            liquidController.Clear();
+    if (dropCollision != null)
+        dropCollision.Init(reactionManager);
 
-        Debug.Log("Gota liberada");
-    }
+    hasSample = false;
+
+    if (liquidController != null)
+        liquidController.Clear();
+
+    Debug.Log("Gota liberada");
+}
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4233806285244741345}
   - component: {fileID: 1433335175138209611}
   - component: {fileID: -8640384720787099290}
+  - component: {fileID: -8404867675272732409}
   m_Layer: 0
   m_Name: Gota
   m_TagString: Droplet
@@ -144,5 +145,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4ecb7b2cc5e7074e835722921a069ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8404867675272732409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4041837416613713698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc44d2aa4c92d9547a4bf62078e72f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

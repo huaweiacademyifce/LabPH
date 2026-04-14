@@ -42,23 +42,12 @@ public class DropZoneDetector_Reagent : MonoBehaviour
         nextAllowedTime = Time.time + cooldown;
         dropper.ReleaseDrop();
 
-        // ✅ Marca painel simples (reagentes)
-        if (progressPanel != null)
-            progressPanel.MarkCompleted(targetReagentData);
-
             Debug.Log("Tabela tentando marcar: " +
           dropper.currentSample.indicatorType +
           " + " +
           targetReagentData.sampleType);
 
-        // ✅ Marca tabela (indicador X reagente)
-        if (progressTabela != null && dropper.currentSample.isIndicator)
-        {
-            progressTabela.MarkReactionCompleted(
-                dropper.currentSample.indicatorType,
-                targetReagentData.sampleType
-            );
-        }
+        
 
         Debug.Log("[DropZone] 💧 Gota liberada + Progresso atualizado!");
     }

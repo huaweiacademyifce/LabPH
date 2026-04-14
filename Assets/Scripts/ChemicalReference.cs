@@ -8,6 +8,14 @@ public class ChemicalReference : MonoBehaviour
     [Header("Visual do Líquido")]
     public LiquidController liquidController;
 
+    public void ResetVisual()
+    {
+        if (liquidController != null)
+        {
+            liquidController.ResetLiquid();
+        }
+    }
+
     [Header("Configuração")]
     public bool isDropper = false;
 
