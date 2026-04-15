@@ -133,15 +133,15 @@ public class LiquidController : MonoBehaviour
     }
     public void ResetToBaseColor()
     {
-    if (rend == null)
-        rend = GetComponent<Renderer>();
+        if (rend == null)
+            rend = GetComponent<Renderer>();
 
-    rend.GetPropertyBlock(mpb);
+        rend.GetPropertyBlock(mpb);
 
-    // volta para estado inicial do shader
-    mpb.SetFloat(LerpFactorProp, 0f);
+        // volta para estado inicial do shader
+        mpb.SetFloat(LerpFactorProp, 0f);
 
-    rend.SetPropertyBlock(mpb);
+        rend.SetPropertyBlock(mpb);
     }
     public void ResetLiquid()
     {
@@ -150,10 +150,10 @@ public class LiquidController : MonoBehaviour
 
         rend.GetPropertyBlock(mpb);
 
-    // 🔥 limpa reação
+        // 🔥 limpa reação
         mpb.SetFloat(LerpFactorProp, 0f);
 
-    // 🔥 MUITO IMPORTANTE
+        // 🔥 MUITO IMPORTANTE
         mpb.SetColor(ReactionColorProp, Color.clear);
 
         rend.SetPropertyBlock(mpb);

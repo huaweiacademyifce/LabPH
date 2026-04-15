@@ -5,6 +5,10 @@ public class DropperController : MonoBehaviour
     public bool hasSample = false;
     public ChemicalSampleData currentSample;
 
+    [Header("Áudio")]
+    public AudioSource audioSource;
+    public AudioClip absorbSound;
+
     [Header("Visual")]
     public LiquidController liquidController;
 
@@ -20,7 +24,15 @@ public class DropperController : MonoBehaviour
         if (sample == null) return;
 
         currentSample = sample;
-        hasSample = true;
+        if (!hasSample)
+        {
+            hasSample = true;
+
+            if (audioSource != null && absorbSound != null)
+            {
+                audioSource.PlayOneShot(absorbSound);
+            }
+        }
 
         Color indicatorColor = GetIndicatorColor();
 

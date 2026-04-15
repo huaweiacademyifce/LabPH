@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class ReactionManager : MonoBehaviour
 {
+    [Header("Áudio")]
+    public AudioSource audioSource;
+    public AudioClip dropSound;
+
     [Header("Canvas Final")]
     public FinalCanvasController finalCanvasController;
 
@@ -30,8 +34,8 @@ public class ReactionManager : MonoBehaviour
     {
         foreach (var flask in allFlasks)
         {
-        if (flask != null)
-            flask.ResetVisual();
+            if (flask != null)
+                flask.ResetVisual();
         }
     }
 
@@ -71,9 +75,9 @@ public class ReactionManager : MonoBehaviour
         if (progressPanel != null)
             progressPanel.ResetAll();
 
-    // 🔥 ESSENCIAL
+        // 🔥 ESSENCIAL
         ResetAllFlasks();
-    }   
+    }
 
     private void AtualizarCorDoIndicador()
     {
@@ -175,6 +179,11 @@ public class ReactionManager : MonoBehaviour
     {
         if (frasco == null || frasco.data == null)
             return;
+
+        if (audioSource != null && dropSound != null)
+        {
+            audioSource.PlayOneShot(dropSound);
+        }
 
         if (experimentManager != null)
             experimentManager.RegisterReaction(frasco.data.sampleType);

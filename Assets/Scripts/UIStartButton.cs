@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UIStartButton : MonoBehaviour
 {
+
     [Header("Painel que será desativado ao clicar no botão")]
     public GameObject painelInicial;
 
