@@ -70,22 +70,22 @@ public class DropperController : MonoBehaviour
         Quaternion.identity
         );
 
-    Renderer r = drop.GetComponent<Renderer>();
+        Renderer r = drop.GetComponent<Renderer>();
 
-    if (r != null)
-        r.material.color = GetIndicatorColor();
+        if (r != null)
+            r.material.color = GetIndicatorColor();
 
-    // 🔥 NOVO
-    DropCollision dropCollision = drop.GetComponent<DropCollision>();
+        // 🔥 NOVO
+        DropCollision dropCollision = drop.GetComponent<DropCollision>();
 
-    if (dropCollision != null)
-        dropCollision.Init(reactionManager);
+        if (dropCollision != null)
+            dropCollision.Init(reactionManager);
 
-    hasSample = false;
+        hasSample = false;
 
-    if (liquidController != null)
-        liquidController.Clear();
+        if (liquidController != null)
+            liquidController.Clear();
 
-    Debug.Log("Gota liberada");
-}
+        Debug.Log("Gota liberada");
+    }
 }
