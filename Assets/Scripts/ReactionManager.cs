@@ -35,7 +35,10 @@ public class ReactionManager : MonoBehaviour
         foreach (var flask in allFlasks)
         {
             if (flask != null)
+            {
                 flask.ResetVisual();
+                flask.hasReacted = false;
+            }
         }
     }
 
@@ -180,6 +183,12 @@ public class ReactionManager : MonoBehaviour
         if (frasco == null || frasco.data == null)
             return;
 
+        if (frasco.hasReacted)
+        {
+            Debug.Log("Esse frasco já reagiu!");
+            return;
+        }
+
         if (audioSource != null && dropSound != null)
         {
             audioSource.PlayOneShot(dropSound);
@@ -194,6 +203,8 @@ public class ReactionManager : MonoBehaviour
         {
             frasco.React(reactionColor);
         }
+
+        frasco.hasReacted = true;
 
         if (progressPanel != null)
             progressPanel.MarkCompleted(frasco.data);

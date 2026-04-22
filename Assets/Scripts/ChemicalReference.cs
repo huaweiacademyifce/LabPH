@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class ChemicalReference : MonoBehaviour
 {
+
     [Header("Dados da Amostra")]
     public ChemicalSampleData data;
 
     [Header("Visual do Líquido")]
     public LiquidController liquidController;
+
+    [HideInInspector]
+    public bool hasReacted = false;
 
     public void ResetVisual()
     {
