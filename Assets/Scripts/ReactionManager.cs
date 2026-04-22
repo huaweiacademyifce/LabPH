@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ReactionManager : MonoBehaviour
 {
@@ -30,21 +31,23 @@ public class ReactionManager : MonoBehaviour
     [Header("Frascos")]
     public ChemicalReference[] allFlasks;
 
-    public void ResetAllFlasks()
-    {
-        foreach (var flask in allFlasks)
-        {
-            if (flask != null)
-            {
-                flask.ResetVisual();
-                flask.hasReacted = false;
-            }
-        }
-    }
+    private HashSet<ChemicalReference> reactedFlasks = new HashSet<ChemicalReference>();
 
     void Start()
     {
         AtualizarCorDoIndicador();
+    }
+
+    public void ResetAllFlasks()
+    {
+        // 🔥 limpa controle de estado
+        reactedFlasks.Clear();
+
+        foreach (var flask in allFlasks)
+        {
+            if (flask != null)
+                flask.ResetVisual();
+        }
     }
 
     // 🔥 CHAMADO QUANDO TERMINA AS 5 REAÇÕES
@@ -186,7 +189,7 @@ public class ReactionManager : MonoBehaviour
         if (frasco == null || frasco.data == null)
             return;
 
-        if (frasco.hasReacted)
+        if (reactedFlasks.Contains(frasco))
         {
             Debug.Log("Esse frasco já reagiu!");
             return;
@@ -205,8 +208,9 @@ public class ReactionManager : MonoBehaviour
         if (reactionColor != Color.clear)
         {
             frasco.React(reactionColor);
-            frasco.hasReacted = true;
         }
+        reactedFlasks.Add(frasco);
+
 
 
         if (progressPanel != null)
@@ -218,10 +222,16 @@ public class ReactionManager : MonoBehaviour
                 frasco.data.sampleType
             );
     }
+    private Color Hex(string hex)
+    {
+        ColorUtility.TryParseHtmlString(hex, out var c);
+        return c;
+    }
 
     public void ResetToStart()
     {
         currentIndicatorIndex = 0;
         AtualizarCorDoIndicador();
+        reactedFlasks.Clear();
     }
 }

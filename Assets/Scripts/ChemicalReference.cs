@@ -9,9 +9,8 @@ public class ChemicalReference : MonoBehaviour
     [Header("Visual do Líquido")]
     public LiquidController liquidController;
 
-    [HideInInspector]
-    public bool hasReacted = false;
-
+    [Header("Configuração")]
+    public bool isDropper = false;
     public void ResetVisual()
     {
         if (liquidController != null)
@@ -19,9 +18,6 @@ public class ChemicalReference : MonoBehaviour
             liquidController.ResetLiquid();
         }
     }
-
-    [Header("Configuração")]
-    public bool isDropper = false;
 
     public void React(Color color)
     {
