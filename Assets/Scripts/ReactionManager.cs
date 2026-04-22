@@ -205,9 +205,9 @@ public class ReactionManager : MonoBehaviour
         if (reactionColor != Color.clear)
         {
             frasco.React(reactionColor);
+            frasco.hasReacted = true;
         }
 
-        frasco.hasReacted = true;
 
         if (progressPanel != null)
             progressPanel.MarkCompleted(frasco.data);
