@@ -24,17 +24,17 @@ public class DropperController : MonoBehaviour
         if (sample == null) return;
 
         currentSample = sample;
+
         if (!hasSample)
         {
             hasSample = true;
 
             if (audioSource != null && absorbSound != null)
-            {
                 audioSource.PlayOneShot(absorbSound);
-            }
         }
 
-        Color indicatorColor = GetIndicatorColor();
+        // 🔥 pega cor do frasco indicador
+        Color indicatorColor = reactionManager.frascoIndicadorRenderer.material.color;
 
         if (liquidController != null)
             liquidController.AbsorbIndicator(indicatorColor);
@@ -42,52 +42,24 @@ public class DropperController : MonoBehaviour
         Debug.Log("Conta-gotas absorveu indicador: " + reactionManager.CurrentIndicator);
     }
 
-    Color GetIndicatorColor()
-    {
-        switch (reactionManager.CurrentIndicator)
-        {
-            case IndicatorType.RepolhoRoxo:
-
-                ColorUtility.TryParseHtmlString("#5A2D82", out var roxo);
-                return roxo;
-
-            case IndicatorType.Fenolftaleina:
-                {
-                    ColorUtility.TryParseHtmlString("#F0DF86", out var amareloClaro);
-                    amareloClaro.a = 0.25f; // 👈 controla visibilidade no conta-gotas
-                    return amareloClaro;
-                }
-
-            case IndicatorType.AzulBromotimol:
-
-                ColorUtility.TryParseHtmlString("#3CB371", out var verdeClaro);
-                return verdeClaro;
-
-            case IndicatorType.AlaranjadoMetila:
-
-                ColorUtility.TryParseHtmlString("#FF8C00", out var laranja);
-                return laranja;
-        }
-
-        return Color.white;
-    }
-
     public void ReleaseDrop()
     {
         if (!hasSample || dropPrefab == null) return;
 
         GameObject drop = Instantiate(
-        dropPrefab,
-        dropSpawnPoint.position,
-        Quaternion.identity
+            dropPrefab,
+            dropSpawnPoint.position,
+            Quaternion.identity
         );
 
         Renderer r = drop.GetComponent<Renderer>();
 
         if (r != null)
-            r.material.color = GetIndicatorColor();
+        {
+            // 🔥 usa mesma cor do frasco
+            r.material.color = reactionManager.frascoIndicadorRenderer.material.color;
+        }
 
-        // 🔥 NOVO
         DropCollision dropCollision = drop.GetComponent<DropCollision>();
 
         if (dropCollision != null)
