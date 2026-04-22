@@ -12,6 +12,9 @@ public class FinalCanvasController : MonoBehaviour
     public ReactionManager reactionManager;
     public ProgressTabelaController progressTabela;
 
+    [Header("UI")]
+    public ProgressPanelController progressPanel;
+
     public void ShowFinalCanvas()
     {
         canvasFinal.SetActive(true);
@@ -29,6 +32,12 @@ public class FinalCanvasController : MonoBehaviour
     public void OnFinalContinue()
     {
         HideFinalCanvas();
+
+        if (progressPanel != null)
+        {
+            progressPanel.gameObject.SetActive(true);
+            progressPanel.ResetAll();
+        }
 
         if (resetLabManager != null)
             resetLabManager.ResetLab();

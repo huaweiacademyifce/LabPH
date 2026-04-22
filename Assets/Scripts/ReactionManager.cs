@@ -57,6 +57,9 @@ public class ReactionManager : MonoBehaviour
         {
             Debug.Log("Último indicador → mostrar canvas final");
 
+            if (progressPanel != null)
+                progressPanel.gameObject.SetActive(false);
+
             if (finalCanvasController != null)
                 finalCanvasController.ShowFinalCanvas();
 

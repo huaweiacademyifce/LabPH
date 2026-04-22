@@ -7874,6 +7874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 49cd6a5bec3daf14cb229e2e53578590, type: 2}
   liquidController: {fileID: 424534232}
+  hasReacted: 0
   isDropper: 0
 --- !u!136 &411225585
 CapsuleCollider:
@@ -14156,6 +14157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 79cf9626998b68b439ce9d0e734da6ee, type: 2}
   liquidController: {fileID: 256072893}
+  hasReacted: 0
   isDropper: 0
 --- !u!136 &744543120
 CapsuleCollider:
@@ -14338,6 +14340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 32244a0ac9f513f4c999aba50a48fd68, type: 2}
   liquidController: {fileID: 1936877916}
+  hasReacted: 0
   isDropper: 0
 --- !u!136 &749075642
 CapsuleCollider:
@@ -20515,6 +20518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: da53f04976b8c3244b3553c91b2d724e, type: 2}
   liquidController: {fileID: 1777863981}
+  hasReacted: 0
   isDropper: 0
 --- !u!136 &1103493730
 CapsuleCollider:
@@ -24082,6 +24086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 2a43095612f294b4bb5e0ca5bd0b37e6, type: 2}
   liquidController: {fileID: 1987471132}
+  hasReacted: 0
   isDropper: 0
 --- !u!54 &1336325102
 Rigidbody:
@@ -24459,6 +24464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b659f6b4e49336b45903300e86576d2c, type: 2}
   liquidController: {fileID: 1887653624}
+  hasReacted: 0
   isDropper: 0
 --- !u!136 &1353475549
 CapsuleCollider:
@@ -26285,6 +26291,7 @@ MonoBehaviour:
   resetLabManager: {fileID: 1149728208}
   reactionManager: {fileID: 22649159}
   progressTabela: {fileID: 1677836660}
+  progressPanel: {fileID: 0}
 --- !u!82 &1459120972
 AudioSource:
   m_ObjectHideFlags: 0
