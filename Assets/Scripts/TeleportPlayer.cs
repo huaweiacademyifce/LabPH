@@ -4,24 +4,34 @@ public class TeleportPlayer : MonoBehaviour
 {
     public Transform teleportPoint;
     public GameObject painelInicial;
-    public Transform xrRig; // Root do XR Rig / Camera Rig
+
+    public Transform xrRig;          // OVR Rig root
+    public Transform centerEye;      // CenterEyeAnchor (Câmera)
 
     public void Teleport()
     {
-        if (xrRig == null || teleportPoint == null)
+        if (xrRig == null || teleportPoint == null || centerEye == null)
         {
             Debug.LogError("Teleport config missing!");
             return;
         }
 
-        // Teleporta o XR Rig inteiro
+        // 🔥 TELEPORTA POSIÇÃO
         xrRig.position = teleportPoint.position;
-        xrRig.rotation = teleportPoint.rotation;
 
-        // Desativa painel inicial
+        // 🔥 CALCULA DIFERENÇA DE ROTAÇÃO DA CABEÇA
+        float currentY = centerEye.eulerAngles.y;
+        float targetY = teleportPoint.eulerAngles.y + 180f;
+
+        float delta = targetY - currentY;
+
+        // 🔥 APLICA NO RIG
+        xrRig.Rotate(0f, delta, 0f);
+
+        // UI
         if (painelInicial != null)
             painelInicial.SetActive(false);
 
-        Debug.Log("Teleporte VR aplicado com sucesso!");
+        Debug.Log("Teleporte com rotação VR corrigida!");
     }
 }
