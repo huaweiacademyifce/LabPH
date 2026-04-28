@@ -107,7 +107,7 @@ public class ReactionManager : MonoBehaviour
                 break;
 
             case IndicatorType.AzulBromotimol:
-                ColorUtility.TryParseHtmlString("#3CB371", out novaCor);
+                ColorUtility.TryParseHtmlString("#1F9E89", out novaCor);
                 novaCor.a = 0.5f;
                 break;
 
@@ -163,7 +163,7 @@ public class ReactionManager : MonoBehaviour
                         ColorUtility.TryParseHtmlString("#0000FF", out var azulForte);
                         return azulForte;
                     default:
-                        ColorUtility.TryParseHtmlString("#00A86B", out var verde);
+                        ColorUtility.TryParseHtmlString("#1F9E89", out var verde);
                         return verde;
                 }
 
