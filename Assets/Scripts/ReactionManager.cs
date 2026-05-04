@@ -19,6 +19,9 @@ public class ReactionManager : MonoBehaviour
         IndicatorType.AlaranjadoMetila
     };
 
+    [Header("Placa do Indicador")]
+    public IndicatorPlateController indicatorPlate;
+
     private int currentIndicatorIndex = 0;
     public IndicatorType CurrentIndicator => indicatorOrder[currentIndicatorIndex];
 
@@ -36,6 +39,9 @@ public class ReactionManager : MonoBehaviour
     void Start()
     {
         AtualizarCorDoIndicador();
+
+        if (indicatorPlate != null)
+            indicatorPlate.ShowPlate(CurrentIndicator);
     }
 
     public void ResetAllFlasks()
@@ -83,6 +89,13 @@ public class ReactionManager : MonoBehaviour
 
         if (progressPanel != null)
             progressPanel.ResetAll();
+
+        if (indicatorPlate != null)
+            indicatorPlate.ShowPlate(CurrentIndicator);
+
+        if (progressPanel != null)
+            progressPanel.ResetAll();
+
 
         // 🔥 ESSENCIAL
         ResetAllFlasks();
@@ -232,6 +245,10 @@ public class ReactionManager : MonoBehaviour
     {
         currentIndicatorIndex = 0;
         AtualizarCorDoIndicador();
+
+        if (indicatorPlate != null)
+            indicatorPlate.ShowPlate(CurrentIndicator);
+
         reactedFlasks.Clear();
     }
 }
