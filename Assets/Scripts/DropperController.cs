@@ -30,7 +30,7 @@ public class DropperController : MonoBehaviour
             hasSample = true;
 
             if (audioSource != null && absorbSound != null)
-                audioSource.PlayOneShot(absorbSound);
+                AudioManager.Instance.Play(absorbSound);
         }
 
         // 🔥 pega cor do frasco indicador

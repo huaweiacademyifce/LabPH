@@ -31,7 +31,7 @@ public class GrabAudioOnSelect : MonoBehaviour
     {
         if (audioSource != null && grabSound != null)
         {
-            audioSource.PlayOneShot(grabSound);
+            AudioManager.Instance.Play(grabSound);
         }
     }
 }

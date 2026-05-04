@@ -197,7 +197,7 @@ public class ReactionManager : MonoBehaviour
 
         if (audioSource != null && dropSound != null)
         {
-            audioSource.PlayOneShot(dropSound);
+            AudioManager.Instance.Play(dropSound);
         }
 
         if (experimentManager != null)

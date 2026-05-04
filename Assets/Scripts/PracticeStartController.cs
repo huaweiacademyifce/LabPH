@@ -24,7 +24,7 @@ public class PracticeStartController : MonoBehaviour
         // 🔊 toca áudio
         if (audioSource != null && startGuideAudio != null)
         {
-            audioSource.PlayOneShot(startGuideAudio);
+            AudioManager.Instance.Play(startGuideAudio);
         }
 
         // 🧾 esconde canvas

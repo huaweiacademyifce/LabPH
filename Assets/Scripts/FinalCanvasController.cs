@@ -20,7 +20,7 @@ public class FinalCanvasController : MonoBehaviour
         canvasFinal.SetActive(true);
         if (audioSource != null && finalAudio != null)
         {
-            audioSource.PlayOneShot(finalAudio);
+            AudioManager.Instance.Play(finalAudio);
         }
     }
 

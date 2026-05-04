@@ -9,7 +9,7 @@ public class SimpleAudioPlayer : MonoBehaviour
     {
         if (audioSource != null && clip != null)
         {
-            audioSource.PlayOneShot(clip);
+            AudioManager.Instance.Play(clip);
         }
     }
 }
